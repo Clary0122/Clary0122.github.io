@@ -123,6 +123,7 @@
 <nav class="site-nav">
   <ul class="main-menu menu">
         <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
   </ul>
@@ -166,10 +167,17 @@
 <div class="site-state-wrap site-overview-item animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
@@ -251,8 +259,17 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-03-04 20:27:26" itemprop="dateModified" datetime="2021-03-04T20:27:26+09:00">2021-03-04</time>
+        <time title="Modified: 2021-03-04 20:37:34" itemprop="dateModified" datetime="2021-03-04T20:37:34+09:00">2021-03-04</time>
       </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/TIL/" itemprop="url" rel="index"><span itemprop="name">TIL</span></a>
+        </span>
+    </span>
 
   
 </div>
@@ -264,7 +281,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="git-start"><a href="#git-start" class="headerlink" title="git start"></a>git start</h1><h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a><font style:color='red'>Done</font></h2><h3 id="1-shell-command"><a href="#1-shell-command" class="headerlink" title="1. shell command"></a>1. shell command</h3><h4 id="리스트-출력"><a href="#리스트-출력" class="headerlink" title="리스트 출력"></a>리스트 출력</h4><ul>
+          <h1 id="git-start"><a href="#git-start" class="headerlink" title="git start"></a>git start</h1><h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a><font style:color="red">Done</font></h2><h3 id="shell-command"><a href="#shell-command" class="headerlink" title="shell command"></a>shell command</h3><h4 id="리스트-출력"><a href="#리스트-출력" class="headerlink" title="리스트 출력"></a>리스트 출력</h4><ul>
 <li><strong>ls</strong> : 전체 리스트</li>
 <li><strong>ls -a</strong> : 숨긴 파일까지 출력</li>
 <li><strong>ls -l</strong> : 자세히</li>
@@ -281,80 +298,17 @@
 <li><strong>rm {파일명}</strong> : 삭제</li>
 <li><strong>cat {파일명}</strong> : 내용 확인</li>
 </ul>
-<h3 id="2-vim-command"><a href="#2-vim-command" class="headerlink" title="2. vim command"></a>2. vim command</h3><h4 id="vim-열기"><a href="#vim-열기" class="headerlink" title="vim 열기"></a>vim 열기</h4><ul>
+<h3 id="vim-command"><a href="#vim-command" class="headerlink" title="vim command"></a>vim command</h3><h4 id="vim-열기"><a href="#vim-열기" class="headerlink" title="vim 열기"></a>vim 열기</h4><ul>
 <li><strong>vi {파일명}</strong></li>
 </ul>
-<h4 id="vim-모드"><a href="#vim-모드" class="headerlink" title="vim 모드"></a>vim 모드</h4><ul>
-<li><strong>I</strong> : insert 모드로 진입</li>
-<li><strong>Esc</strong> : normal 모드로 돌아오기</li>
-</ul>
-<h4 id="vim-command-노말모드에서"><a href="#vim-command-노말모드에서" class="headerlink" title="vim command (노말모드에서)"></a>vim command (노말모드에서)</h4><ul>
-<li>한 줄 복사 : shift + y</li>
-<li>붙여넣기 : p</li>
-<li>한 줄 지우기 : dd</li>
-</ul>
-<h4 id="저장"><a href="#저장" class="headerlink" title="저장"></a>저장</h4><ul>
-<li><strong>:q</strong>    나가기</li>
-<li><strong>:q!</strong>    강제로 나가기</li>
-<li><strong>:w</strong>    저장</li>
-<li><strong>:wq</strong>    (저장하고)나가기</li>
-</ul>
-<h3 id="3-Markdown"><a href="#3-Markdown" class="headerlink" title="3. Markdown"></a>3. Markdown</h3><ul>
-<li>주석 : <code>&lt;!-- 주석 표시 --&gt;</code></li>
-<li>제목 : <code>#</code> 개수(~6 개까지)</li>
-<li>순서없는 리스트 : <code>- 내용</code> (탭으로 들여쓰기)</li>
-<li>순서있는 리스트 : <code>1. 내용</code></li>
-<li>하이퍼링크 : <code>[링크텍스트](링크 URL)</code></li>
-<li>이미지 : <code>![대체텍스트](이미지 URL)</code></li>
-</ul>
-<h3 id="4-What-is-git"><a href="#4-What-is-git" class="headerlink" title="4. What is git?"></a>4. What is git?</h3><p>분산형 형상관리 도구</p>
-<h3 id="5-Why-is-need-it"><a href="#5-Why-is-need-it" class="headerlink" title="5. Why is need it?"></a>5. Why is need it?</h3><ul>
-<li>빠른속도, 단순한 구조</li>
-<li>분산형 저장소 지원</li>
-<li>비선형적 개발(수천개의 브랜치) 가능</li>
-</ul>
-<h3 id="6-How-to-use-git"><a href="#6-How-to-use-git" class="headerlink" title="6. How to use git?"></a>6. How to use git?</h3><p><img src="https://user-images.githubusercontent.com/79209568/109812060-eda21000-7c6e-11eb-81dc-5d641b021a92.png" alt="image"></p>
-<ol>
-<li>working directory -&gt; staging area     : <strong>git add</strong></li>
-<li>staging area -&gt; localrepo         : <strong>git commit</strong></li>
-<li>localrepo -&gt; remote repo         : <strong>git push</strong></li>
-</ol>
-<h4 id="Start-project-with-git-init"><a href="#Start-project-with-git-init" class="headerlink" title="Start project with git init"></a>Start project with git init</h4><ol>
-<li>Git 환경설정<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.name <span class="string">&quot;깃헙유저네임&quot;</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global user.email <span class="string">&quot;깃헙가입이메일&quot;</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global core.editor <span class="string">&quot;vim&quot;</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git config --global core.paper <span class="string">&quot;cat&quot;</span></span></span><br></pre></td></tr></table></figure></li>
-<li>Run in shell<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> mkdir my-first-repo	&lt;!--새 디렉토리 생성--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> <span class="built_in">cd</span> my-first-repo	&lt;!--새 디렉토리로 이동--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git init</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git remote add origin https://github.com/&#123;username&#125;/&#123;reponame&#125;.git	&lt;!-- origin : 별명 --&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> touch README.md	&lt;!--깃에 올릴 파일 생성--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add README.md	&lt;!--working directory 에서 staging area로 올라감--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit		&lt;!--staging area에서 <span class="built_in">local</span> repo로 올라감--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin main	&lt;!--<span class="built_in">local</span> repo에서 remote repo로 올라감--&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h4 id="Start-project-with-git-clone"><a href="#Start-project-with-git-clone" class="headerlink" title="Start project with git clone"></a>Start project with git clone</h4><ol>
-<li>Copy address of repository from github</li>
-<li>Run in shell<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> git <span class="built_in">clone</span> &#123;repo address&#125;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> touch README.md	&lt;!--깃에 올릴 파일 생성--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git add README.md</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git commit</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> git push origin main</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-<h3 id="7-Create-my-Github-page"><a href="#7-Create-my-Github-page" class="headerlink" title="7. Create my Github page"></a>7. Create my Github page</h3><ol>
-<li><p>Static site Generator to use : <strong>Hexo</strong></p>
-</li>
-<li><p>Install Hexo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install -g hexo-cli</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Init Hexo</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo init hexo-blog	&lt;!--새로운 디렉토리 생성됨--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> npm install</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Create new post</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo new post <span class="string">&quot;My first post&quot;</span>	&lt;!--포스트 명--&gt;</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi <span class="built_in">source</span>/_posts/My-first-post.md	&lt;!--vim에서 포스트 작성--&gt;</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Clean &amp; Generate static files</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo generate</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Run hexo server (in localhost)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo server</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Deploy settings</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> npm install hexo-deployer-git --save</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> vi _config.yml</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repo: https://github.com/&#123;username&#125;/&#123;username&#125;.github.io.git</span><br><span class="line">  branch: main</span><br></pre></td></tr></table></figure>
-<p><img src="https://user-images.githubusercontent.com/79209568/109818462-593bab80-7c76-11eb-8f6c-7f162b47d503.png" alt="image"></p>
-</li>
-<li><p>Clean &amp; Deploy</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> hexo clean &amp;&amp; hexo deploy</span></span><br></pre></td></tr></table></figure></li>
-<li><p>Done! go to ‘{username}.git.io’</p>
-</li>
-</ol>
-<h2 id="TODO"><a href="#TODO" class="headerlink" title="TODO"></a><font style:color='red'>TODO</font></h2><ol>
-<li>블로그 테마 상세 설정</li>
-<li>TIL을 블로그에 업로드해보기</li>
-</ol>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/03/TLI-210303-Git-Start/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -422,6 +376,14 @@
 <p>앞으로 저의 블로그는 데이터 분석과 파이썬, 디지털 마케팅에 대해 심도 깊고 재미있는 포스팅을 약속합니다.</p>
 <p>만족하신 분들은 구독과 좋아요 부탁드립니다~</p>
 
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/03/Introduce-My-New-Blog/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
