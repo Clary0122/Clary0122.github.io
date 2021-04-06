@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"clary0122.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="스택 (Stack) 데이터를 제한적으로 접근할 수 있는 구조   한 쪽 끝에서만 자료를 넣거나 뺄 수 있는 구조   가장 나중에 쌓은 데이터를 가장 먼저 뺄 수 있는 구조   큐 : FIFO 정책 스택 : LIFO 정책  스택 구조 스택은 LIFO(Last In, Fisrt Out) 또는 FILO(First In, Last Out) 데이터 관리 방식을 따름">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stack">
+<meta property="og:url" content="https://clary0122.github.io/2021/03/10/Stack/index.html">
+<meta property="og:site_name" content="채룽 블로그">
+<meta property="og:description" content="스택 (Stack) 데이터를 제한적으로 접근할 수 있는 구조   한 쪽 끝에서만 자료를 넣거나 뺄 수 있는 구조   가장 나중에 쌓은 데이터를 가장 먼저 뺄 수 있는 구조   큐 : FIFO 정책 스택 : LIFO 정책  스택 구조 스택은 LIFO(Last In, Fisrt Out) 또는 FILO(First In, Last Out) 데이터 관리 방식을 따름">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/110643948-f1e2a600-81f7-11eb-84b9-2b93ad8e9323.png">
+<meta property="article:published_time" content="2021-03-09T17:01:36.000Z">
+<meta property="article:modified_time" content="2021-04-06T17:02:56.170Z">
+<meta property="article:author" content="CLARY">
+<meta property="article:tag" content="stack">
+<meta property="article:tag" content="lifo">
+<meta property="article:tag" content="push">
+<meta property="article:tag" content="pop">
+<meta property="article:tag" content="function">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/79209568/110643948-f1e2a600-81f7-11eb-84b9-2b93ad8e9323.png">
+
+
+<link rel="canonical" href="https://clary0122.github.io/2021/03/10/Stack/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Stack | 채룽 블로그</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">채룽 블로그</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EC%8A%A4%ED%83%9D-Stack"><span class="nav-number">1.</span> <span class="nav-text">스택 (Stack)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8A%A4%ED%83%9D-%EA%B5%AC%EC%A1%B0"><span class="nav-number">1.1.</span> <span class="nav-text">스택 구조</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8A%A4%ED%83%9D%EC%9D%98-%EC%9A%A9%EC%96%B4"><span class="nav-number">1.2.</span> <span class="nav-text">스택의 용어</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%8A%A4%ED%83%9D-%EA%B5%AC%EC%A1%B0%EC%99%80-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4-%EC%8A%A4%ED%83%9D"><span class="nav-number">1.3.</span> <span class="nav-text">스택 구조와 프로세스 스택</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%8A%A4%ED%83%9D%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90"><span class="nav-number">1.4.</span> <span class="nav-text">자료구조 스택의 장단점</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EA%B8%B0%EB%8A%A5%EC%97%90%EC%84%9C-%EC%A0%9C%EA%B3%B5%ED%95%98%EB%8A%94-%EB%A9%94%EC%84%9C%EB%93%9C%EB%A1%9C-%EC%8A%A4%ED%83%9D-%EC%82%AC%EC%9A%A9%ED%95%B4%EB%B3%B4%EA%B8%B0"><span class="nav-number">1.5.</span> <span class="nav-text">Python 리스트 기능에서 제공하는 메서드로 스택 사용해보기</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%97%B0%EC%8A%B5"><span class="nav-number">1.6.</span> <span class="nav-text">프로그래밍 연습</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CLARY</p>
+  <div class="site-description" itemprop="description">Python, Data Science, Performance Marketing, Programming</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Clary0122" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Clary0122" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Stack
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-10 02:01:36" itemprop="dateCreated datePublished" datetime="2021-03-10T02:01:36+09:00">2021-03-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:02:56" itemprop="dateModified" datetime="2021-04-07T02:02:56+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="스택-Stack"><a href="#스택-Stack" class="headerlink" title="스택 (Stack)"></a>스택 (Stack)</h1><ul>
+<li>데이터를 제한적으로 접근할 수 있는 구조</li>
+</ul>
+<ul>
+<li>한 쪽 끝에서만 자료를 넣거나 뺄 수 있는 구조</li>
+</ul>
+<ul>
+<li><strong>가장 나중에 쌓은 데이터를 가장 먼저 뺄 수 있는 구조</strong></li>
+</ul>
+<ul>
+<li>큐 : FIFO 정책</li>
+<li>스택 : LIFO 정책</li>
+</ul>
+<h2 id="스택-구조"><a href="#스택-구조" class="headerlink" title="스택 구조"></a>스택 구조</h2><ul>
+<li>스택은 LIFO(Last In, Fisrt Out) 또는 FILO(First In, Last Out) 데이터 관리 방식을 따름<ul>
+<li>LIFO: 마지막에 넣은 데이터를 가장 먼저 추출하는 데이터 관리 정책</li>
+<li>FILO: 처음에 넣은 데이터를 가장 마지막에 추출하는 데이터 관리 정책</li>
+<li>visualgo 에서 시연해보기 (<a target="_blank" rel="noopener" href="https://visualgo.net/en/list">https://visualgo.net/en/list</a>)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>대표적인 스택의 활용<ul>
+<li>컴퓨터 내부의 프로세스 구조의 함수 동작 방식</li>
+</ul>
+</li>
+</ul>
+<h2 id="스택의-용어"><a href="#스택의-용어" class="headerlink" title="스택의 용어"></a>스택의 용어</h2><ul>
+<li>push(): 데이터를 스택에 넣기</li>
+<li>pop(): 데이터를 스택에서 꺼내기</li>
+</ul>
+<h2 id="스택-구조와-프로세스-스택"><a href="#스택-구조와-프로세스-스택" class="headerlink" title="스택 구조와 프로세스 스택"></a>스택 구조와 프로세스 스택</h2><ul>
+<li><p>스택 구조는 프로세스 실행 구조의 가장 기본</p>
+<ul>
+<li>함수 호출 시 프로세스 실행 구조를 스택과 비교해서 이해가 필요하다<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 재귀함수</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">recursive</span>(<span class="params">data</span>):</span></span><br><span class="line">  <span class="keyword">if</span> data &lt; <span class="number">0</span>:</span><br><span class="line">    print(<span class="string">&quot;ended&quot;</span>)</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    print(data)</span><br><span class="line">    recursive(data - <span class="number">1</span>)</span><br><span class="line">    print(<span class="string">&quot;returned&quot;</span>, data)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recursive(<span class="number">3</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>3</strong><br><strong>2</strong><br><strong>1</strong><br><strong>0</strong><br><strong>ended</strong><br><strong>returned 0</strong><br><strong>returned 1</strong><br><strong>returned 2</strong><br><strong>returned 3</strong></p>
+<ul>
+<li>출력이 위와 같이 나오는 이유<br><img src="https://user-images.githubusercontent.com/79209568/110643948-f1e2a600-81f7-11eb-84b9-2b93ad8e9323.png" alt="image"></li>
+</ul>
+<p> <strong>1</strong> recursive(3) 실행 : print(3) 후 recursive(2) 호출<br> <strong>2</strong> recursive(2) 실행 : print(2) 후 recursive(1) 호출<br> <strong>3</strong> recursive(1) 실행 : print(1) 후 recursive(0) 호출<br> <strong>4</strong> recursive(0) 실행 : print(0) 후 recursive(-1) 호출<br> <strong>5</strong> recursive(-1) 실행 : print(“ended”) 후 함수가 끝남<br> <strong>6</strong> recursive(0) 나머지 실행 : print(“returned”, 0) 후 함수가 끝남<br> <strong>7</strong> recursive(1) 나머지 실행 : print(“returned”, 1) 후 함수가 끝남<br> <strong>8</strong> recursive(2) 나머지 실행 : print(“returned”, 2) 후 함수가 끝남</p>
+</li>
+</ul>
+<h2 id="자료구조-스택의-장단점"><a href="#자료구조-스택의-장단점" class="headerlink" title="자료구조 스택의 장단점"></a>자료구조 스택의 장단점</h2><ul>
+<li>장점<ul>
+<li>구조가 단순해서, 구현이 쉽다.</li>
+<li>데이터 저장/읽기 속도가 빠르다.</li>
+</ul>
+</li>
+<li>단점 (일반적인 스택 구현시)<ul>
+<li>데이터 최대 갯수를 미리 정해야 한다.<ul>
+<li>파이썬의 경우 재귀 함수는 1000번까지만 호출이 가능함</li>
+</ul>
+</li>
+<li>저장 공간의 낭비가 발생할 수 있음<ul>
+<li>미리 최대 갯수만큼 저장 공간을 확보해야 함</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>스택은 단순하고 빠른 성능을 위해 사용되므로, 보통 배열 구조를 활용해서 구현하는 것이 일반적임.<br>이 경우, 위에서 열거한 단점이 있을 수 있음</p>
+</blockquote>
+<h2 id="Python-리스트-기능에서-제공하는-메서드로-스택-사용해보기"><a href="#Python-리스트-기능에서-제공하는-메서드로-스택-사용해보기" class="headerlink" title="Python 리스트 기능에서 제공하는 메서드로 스택 사용해보기"></a>Python 리스트 기능에서 제공하는 메서드로 스택 사용해보기</h2><ul>
+<li>append(push), pop 메서드 제공<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data_stack = <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line">data_stack.append(<span class="number">1</span>)</span><br><span class="line">data_stack.append(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data_stack</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>[1, 2]</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data_stack.pop()</span><br></pre></td></tr></table></figure>
+<p><strong>2</strong></p>
+<h2 id="프로그래밍-연습"><a href="#프로그래밍-연습" class="headerlink" title="프로그래밍 연습"></a>프로그래밍 연습</h2><ul>
+<li><strong>연습1: 리스트 변수로 스택을 다루는 pop, push 기능 구현해보기 (pop, push 함수 사용하지 않고 직접 구현해보기)</strong><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">stack_list = <span class="built_in">list</span>()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">push</span>(<span class="params">data</span>):</span></span><br><span class="line">  stack_list.append(data)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pop</span>():</span></span><br><span class="line">  data = stack_list[-<span class="number">1</span>]  <span class="comment"># 끝 데이터 삭제</span></span><br><span class="line">  <span class="keyword">del</span> stack_list[-<span class="number">1</span>]</span><br><span class="line">  <span class="keyword">return</span> data</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># push 해보기</span></span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10</span>):</span><br><span class="line">  push(index)</span><br><span class="line"></span><br><span class="line">stack_list</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pop()  <span class="comment"># 가장 끝 데이터 9 추출</span></span><br></pre></td></tr></table></figure>
+<p><strong>9</strong></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/stack/" rel="tag"># stack</a>
+              <a href="/tags/lifo/" rel="tag"># lifo</a>
+              <a href="/tags/push/" rel="tag"># push</a>
+              <a href="/tags/pop/" rel="tag"># pop</a>
+              <a href="/tags/function/" rel="tag"># function</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/10/Queue/" rel="prev" title="Queue">
+                  <i class="fa fa-chevron-left"></i> Queue
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/10/List/" rel="next" title="List">
+                  List <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CLARY</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

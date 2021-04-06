@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"clary0122.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="Kaggle APIColab에서 Kaggle API 사용하기새로운 API 토큰 생성1. 내 아이콘 → Account 2. API 메뉴의 ‘Create New API Token’ 클릭 3. kaggle.json 파일 저장 후 열기 내 토큰 Colab에 세팅하기">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle API">
+<meta property="og:url" content="https://clary0122.github.io/2021/03/26/Kaggle-API/index.html">
+<meta property="og:site_name" content="채룽 블로그">
+<meta property="og:description" content="Kaggle APIColab에서 Kaggle API 사용하기새로운 API 토큰 생성1. 내 아이콘 → Account 2. API 메뉴의 ‘Create New API Token’ 클릭 3. kaggle.json 파일 저장 후 열기 내 토큰 Colab에 세팅하기">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/112648109-8271e500-8e8c-11eb-8910-224bfb265d9f.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/112648366-cd8bf800-8e8c-11eb-8335-7bc4de7922b8.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/112648755-29ef1780-8e8d-11eb-87a7-5edca9c9f6cf.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/112650104-6707d980-8e8e-11eb-9d22-bf875233c636.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/112650444-bbab5480-8e8e-11eb-9be6-2215be4e4503.png">
+<meta property="article:published_time" content="2021-03-25T16:51:52.000Z">
+<meta property="article:modified_time" content="2021-04-06T16:52:43.531Z">
+<meta property="article:author" content="CLARY">
+<meta property="article:tag" content="Kaggle">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/79209568/112648109-8271e500-8e8c-11eb-8910-224bfb265d9f.gif">
+
+
+<link rel="canonical" href="https://clary0122.github.io/2021/03/26/Kaggle-API/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Kaggle API | 채룽 블로그</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">채룽 블로그</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Kaggle-API"><span class="nav-number">1.</span> <span class="nav-text">Kaggle API</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Colab%EC%97%90%EC%84%9C-Kaggle-API-%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0"><span class="nav-number">1.1.</span> <span class="nav-text">Colab에서 Kaggle API 사용하기</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%83%88%EB%A1%9C%EC%9A%B4-API-%ED%86%A0%ED%81%B0-%EC%83%9D%EC%84%B1"><span class="nav-number">1.1.1.</span> <span class="nav-text">새로운 API 토큰 생성</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%EB%82%B4-%EC%95%84%EC%9D%B4%EC%BD%98-%E2%86%92-Account"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">1. 내 아이콘 → Account</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-API-%EB%A9%94%EB%89%B4%EC%9D%98-%E2%80%98Create-New-API-Token%E2%80%99-%ED%81%B4%EB%A6%AD"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">2. API 메뉴의 ‘Create New API Token’ 클릭</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-kaggle-json-%ED%8C%8C%EC%9D%BC-%EC%A0%80%EC%9E%A5-%ED%9B%84-%EC%97%B4%EA%B8%B0"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">3. kaggle.json 파일 저장 후 열기</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%82%B4-%ED%86%A0%ED%81%B0-Colab%EC%97%90-%EC%84%B8%ED%8C%85%ED%95%98%EA%B8%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">내 토큰 Colab에 세팅하기</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Colab-%EC%83%88-%EB%85%B8%ED%8A%B8%EC%97%90%EC%84%9C-%ED%95%B4%EB%8B%B9-%EC%BD%94%EB%93%9C-%EC%9E%91%EC%84%B1"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">1. Colab 새 노트에서 해당 코드 작성</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0%EC%85%8B-%EB%8B%A4%EC%9A%B4%EB%A1%9C%EB%93%9C-%EB%B0%8F-%EC%95%95%EC%B6%95-%ED%95%B4%EC%A0%9C%ED%95%98%EA%B8%B0"><span class="nav-number">1.1.3.</span> <span class="nav-text">데이터셋 다운로드 및 압축 해제하기</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%84%A0%ED%83%9D-%ED%9B%84-%EC%98%A4%EB%A5%B8%EC%AA%BD-%EC%83%81%EB%8B%A8%EC%97%90-%E2%80%A2%E2%80%A2%E2%80%A2-%ED%81%B4%EB%A6%AD-%E2%86%92-Copy-API-command"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">1. 데이터 선택 후 오른쪽 상단에 ••• 클릭 → Copy API command</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Colab%EC%97%90-%EB%B6%99%EC%97%AC%EB%84%A3%EA%B8%B0-%ED%9B%84-%EC%8B%A4%ED%96%89"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">2. Colab에 붙여넣기 후 실행</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CLARY</p>
+  <div class="site-description" itemprop="description">Python, Data Science, Performance Marketing, Programming</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Clary0122" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Clary0122" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/26/Kaggle-API/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kaggle API
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-26 01:51:52" itemprop="dateCreated datePublished" datetime="2021-03-26T01:51:52+09:00">2021-03-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 01:52:43" itemprop="dateModified" datetime="2021-04-07T01:52:43+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Kaggle/" itemprop="url" rel="index"><span itemprop="name">Kaggle</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Kaggle-API"><a href="#Kaggle-API" class="headerlink" title="Kaggle API"></a>Kaggle API</h1><h2 id="Colab에서-Kaggle-API-사용하기"><a href="#Colab에서-Kaggle-API-사용하기" class="headerlink" title="Colab에서 Kaggle API 사용하기"></a>Colab에서 Kaggle API 사용하기</h2><h3 id="새로운-API-토큰-생성"><a href="#새로운-API-토큰-생성" class="headerlink" title="새로운 API 토큰 생성"></a>새로운 API 토큰 생성</h3><h4 id="1-내-아이콘-→-Account"><a href="#1-내-아이콘-→-Account" class="headerlink" title="1. 내 아이콘 → Account"></a>1. 내 아이콘 → Account</h4><p><img src="https://user-images.githubusercontent.com/79209568/112648109-8271e500-8e8c-11eb-8910-224bfb265d9f.gif" alt="1"></p>
+<h4 id="2-API-메뉴의-‘Create-New-API-Token’-클릭"><a href="#2-API-메뉴의-‘Create-New-API-Token’-클릭" class="headerlink" title="2. API 메뉴의 ‘Create New API Token’ 클릭"></a>2. API 메뉴의 ‘Create New API Token’ 클릭</h4><p><img src="https://user-images.githubusercontent.com/79209568/112648366-cd8bf800-8e8c-11eb-8335-7bc4de7922b8.png" alt="image"></p>
+<h4 id="3-kaggle-json-파일-저장-후-열기"><a href="#3-kaggle-json-파일-저장-후-열기" class="headerlink" title="3. kaggle.json 파일 저장 후 열기"></a>3. kaggle.json 파일 저장 후 열기</h4><p><img src="https://user-images.githubusercontent.com/79209568/112648755-29ef1780-8e8d-11eb-87a7-5edca9c9f6cf.png" alt="image"></p>
+<h3 id="내-토큰-Colab에-세팅하기"><a href="#내-토큰-Colab에-세팅하기" class="headerlink" title="내 토큰 Colab에 세팅하기"></a>내 토큰 Colab에 세팅하기</h3><h4 id="1-Colab-새-노트에서-해당-코드-작성"><a href="#1-Colab-새-노트에서-해당-코드-작성" class="headerlink" title="1. Colab 새 노트에서 해당 코드 작성"></a>1. Colab 새 노트에서 해당 코드 작성</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">os.environ[<span class="string">&#x27;KAGGLE_USERNAME&#x27;</span>] = <span class="string">&#x27;chyun2&#x27;</span></span><br><span class="line">os.environ[<span class="string">&#x27;KAGGLE_KEY&#x27;</span>] = <span class="string">&#x27;key value&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="데이터셋-다운로드-및-압축-해제하기"><a href="#데이터셋-다운로드-및-압축-해제하기" class="headerlink" title="데이터셋 다운로드 및 압축 해제하기"></a>데이터셋 다운로드 및 압축 해제하기</h3><h4 id="1-데이터-선택-후-오른쪽-상단에-•••-클릭-→-Copy-API-command"><a href="#1-데이터-선택-후-오른쪽-상단에-•••-클릭-→-Copy-API-command" class="headerlink" title="1. 데이터 선택 후 오른쪽 상단에 ••• 클릭 → Copy API command"></a>1. 데이터 선택 후 오른쪽 상단에 ••• 클릭 → Copy API command</h4><p><img src="https://user-images.githubusercontent.com/79209568/112650104-6707d980-8e8e-11eb-9d22-bf875233c636.png" alt="image"></p>
+<h4 id="2-Colab에-붙여넣기-후-실행"><a href="#2-Colab에-붙여넣기-후-실행" class="headerlink" title="2. Colab에 붙여넣기 후 실행"></a>2. Colab에 붙여넣기 후 실행</h4><p><img src="https://user-images.githubusercontent.com/79209568/112650444-bbab5480-8e8e-11eb-9be6-2215be4e4503.png" alt="image"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Kaggle/" rel="tag"># Kaggle</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/26/Introduction-to-Kaggle/" rel="prev" title="Introduction to Kaggle">
+                  <i class="fa fa-chevron-left"></i> Introduction to Kaggle
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CLARY</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

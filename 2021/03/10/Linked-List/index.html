@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"clary0122.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="링크드 리스트 (Linked List)링크드 리스트(Linked List) 구조 연결 리스트라고도함 배열은 순차적으로 연결된 공간에 데이터를 나열하는 데이터 구조 링크드 리스트는 떨어진 곳에 존재하는 데이터를 화살표로 연결해서 관리하는 데이터 구조 본래 C언어에서는 주요한 데이터 구조이지만, 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원 코테에">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linked List">
+<meta property="og:url" content="https://clary0122.github.io/2021/03/10/Linked-List/index.html">
+<meta property="og:site_name" content="채룽 블로그">
+<meta property="og:description" content="링크드 리스트 (Linked List)링크드 리스트(Linked List) 구조 연결 리스트라고도함 배열은 순차적으로 연결된 공간에 데이터를 나열하는 데이터 구조 링크드 리스트는 떨어진 곳에 존재하는 데이터를 화살표로 연결해서 관리하는 데이터 구조 본래 C언어에서는 주요한 데이터 구조이지만, 파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원 코테에">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://www.fun-coding.org/00_Images/linkedlist.png">
+<meta property="og:image" content="https://www.fun-coding.org/00_Images/linkedlistadd.png">
+<meta property="og:image" content="https://www.fun-coding.org/00_Images/doublelinkedlist.png">
+<meta property="article:published_time" content="2021-03-09T16:54:58.000Z">
+<meta property="article:modified_time" content="2021-04-06T16:56:55.594Z">
+<meta property="article:author" content="CLARY">
+<meta property="article:tag" content="linked list">
+<meta property="article:tag" content="double linked list">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.fun-coding.org/00_Images/linkedlist.png">
+
+
+<link rel="canonical" href="https://clary0122.github.io/2021/03/10/Linked-List/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Linked List | 채룽 블로그</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">채룽 블로그</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-Linked-List"><span class="nav-number">1.</span> <span class="nav-text">링크드 리스트 (Linked List)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-Linked-List-%EA%B5%AC%EC%A1%B0"><span class="nav-number">1.1.</span> <span class="nav-text">링크드 리스트(Linked List) 구조</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EC%9A%A9%EC%96%B4"><span class="nav-number">1.2.</span> <span class="nav-text">용어</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8%EC%9D%98-%EC%9E%A5%EB%8B%A8%EC%A0%90-%EC%A0%84%ED%86%B5%EC%A0%81%EC%9D%B8-C%EC%96%B8%EC%96%B4%EC%97%90%EC%84%9C%EC%9D%98-%EB%B0%B0%EC%97%B4%EA%B3%BC-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8"><span class="nav-number">1.3.</span> <span class="nav-text">링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B0%84%EB%8B%A8%ED%95%9C-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EC%98%88"><span class="nav-number">1.4.</span> <span class="nav-text">간단한 링크드 리스트 예</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Node-%EA%B5%AC%ED%98%84"><span class="nav-number">1.4.1.</span> <span class="nav-text">Node 구현</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Node%EC%99%80-Node-%EC%97%B0%EA%B2%B0%ED%95%98%EA%B8%B0-%ED%8F%AC%EC%9D%B8%ED%84%B0-%ED%99%9C%EC%9A%A9"><span class="nav-number">1.4.2.</span> <span class="nav-text">Node와 Node 연결하기 (포인터 활용)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B6%94%EA%B0%80%ED%95%98%EA%B8%B0"><span class="nav-number">1.4.3.</span> <span class="nav-text">데이터 추가하기</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%B6%9C%EB%A0%A5"><span class="nav-number">1.4.4.</span> <span class="nav-text">링크드 리스트 데이터 출력</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B5%EC%9E%A1%ED%95%9C-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-1-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%82%AC%EC%9D%B4%EC%97%90-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%B6%94%EA%B0%80"><span class="nav-number">1.5.</span> <span class="nav-text">복잡한 링크드 리스트 1 : 링크드 리스트 데이터 사이에 데이터를 추가</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%8C%EC%9D%B4%EC%8D%AC-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%EC%9C%BC%EB%A1%9C-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0-%ED%98%84%EC%9E%AC%EA%B9%8C%EC%A7%80%EC%9D%98-%EA%B8%B0%EB%8A%A5%EB%93%A4-%EC%A0%84%EC%B2%B4-%ED%86%B5%ED%95%A9"><span class="nav-number">1.6.</span> <span class="nav-text">파이썬 객체지향 프로그래밍으로 링크드 리스트 구현하기 (현재까지의 기능들 전체 통합)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%B3%B5%EC%9E%A1%ED%95%9C-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-2-%ED%8A%B9%EC%A0%95-%EB%85%B8%EB%93%9C%EB%A5%BC-%EC%82%AD%EC%A0%9C"><span class="nav-number">1.7.</span> <span class="nav-text">복잡한 링크드 리스트 2 : 특정 노드를 삭제</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EB%8B%A4%EC%96%91%ED%95%9C-%EB%A7%81%ED%81%AC%EB%93%9C-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EA%B5%AC%EC%A1%B0"><span class="nav-number">1.8.</span> <span class="nav-text">다양한 링크드 리스트 구조</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CLARY</p>
+  <div class="site-description" itemprop="description">Python, Data Science, Performance Marketing, Programming</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Clary0122" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Clary0122" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Linked-List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linked List
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-10 01:54:58" itemprop="dateCreated datePublished" datetime="2021-03-10T01:54:58+09:00">2021-03-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 01:56:55" itemprop="dateModified" datetime="2021-04-07T01:56:55+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="링크드-리스트-Linked-List"><a href="#링크드-리스트-Linked-List" class="headerlink" title="링크드 리스트 (Linked List)"></a>링크드 리스트 (Linked List)</h1><h2 id="링크드-리스트-Linked-List-구조"><a href="#링크드-리스트-Linked-List-구조" class="headerlink" title="링크드 리스트(Linked List) 구조"></a>링크드 리스트(Linked List) 구조</h2><ul>
+<li><strong>연결 리스트</strong>라고도함</li>
+<li>배열은 순차적으로 연결된 공간에 데이터를 나열하는 데이터 구조</li>
+<li>링크드 리스트는 떨어진 곳에 존재하는 데이터를 화살표로 연결해서 관리하는 데이터 구조</li>
+<li>본래 C언어에서는 주요한 데이터 구조이지만, <strong>파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원</strong></li>
+<li><span style="color:blue">코테에 간단하게 구현하라는 식으로 나올 수 있으니 구현 코드를 잘 익혀두자!</span></li>
+</ul>
+<h2 id="용어"><a href="#용어" class="headerlink" title="용어"></a>용어</h2><ul>
+<li>노드(Node) : 데이터 저장 단위 (데이터값, 포인터)로 구성</li>
+<li>포인터(Pointer) : 각 노드 안에서, 다음이나 이전의 노드와의 연결 정보를 가지고 있는 공간</li>
+<li>일반적인 링크드 리스트 형태<img src="https://www.fun-coding.org/00_Images/linkedlist.png" /></li>
+</ul>
+<h2 id="링크드-리스트의-장단점-전통적인-C언어에서의-배열과-링크드-리스트"><a href="#링크드-리스트의-장단점-전통적인-C언어에서의-배열과-링크드-리스트" class="headerlink" title="링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)"></a>링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)</h2><ul>
+<li>장점<ul>
+<li>미리 데이터 공간을 할당하지 않아도 됨 (배열은 미리 데이터공간을 할당해야함)</li>
+</ul>
+</li>
+<li>단점<ul>
+<li>저장공간 효율이 높지 않음 -&gt; 연결을 위한 별도 데이터 공간이 필요하기 때문에</li>
+<li>접근 속도가 느림 -&gt; 연결 정보를 찾는 시간이 필요하기 때문</li>
+<li>중간 데이터 삭제 시, 앞뒤 데이터의 연결을 재구성해야하는 부가적인 작업</li>
+</ul>
+</li>
+</ul>
+<h2 id="간단한-링크드-리스트-예"><a href="#간단한-링크드-리스트-예" class="headerlink" title="간단한 링크드 리스트 예"></a>간단한 링크드 리스트 예</h2><h3 id="Node-구현"><a href="#Node-구현" class="headerlink" title="Node 구현"></a>Node 구현</h3><ul>
+<li>보통 Python에서 링크드 리스트 구현 시, 클래스를 활용함</li>
+<li>-&gt; 클래스를 사용해서 구현하는 이유 : 데이터 두 가지(데이터, 주소)로 이루어져 있는 노드를 저장할 수 있는 구조를 만들려면 클래스가 수월</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data, <span class="built_in">next</span>=<span class="literal">None</span></span>):</span>  <span class="comment"># 주소의 디폴트값을 None으로 넣는다</span></span><br><span class="line">    self.data = data</span><br><span class="line">    self.<span class="built_in">next</span> = <span class="built_in">next</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Node와-Node-연결하기-포인터-활용"><a href="#Node와-Node-연결하기-포인터-활용" class="headerlink" title="Node와 Node 연결하기 (포인터 활용)"></a>Node와 Node 연결하기 (포인터 활용)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">node1 = Node(<span class="number">1</span>)  <span class="comment"># 데이터가 1이고 포인터주소는 None인 노드</span></span><br><span class="line">node2 = Node(<span class="number">2</span>)  <span class="comment"># 데이터가 2이고 포인터주손는 None인 노드</span></span><br><span class="line">node1.<span class="built_in">next</span> = node2  <span class="comment"># node1의 포인터주소를 node2로</span></span><br><span class="line">head = node1     <span class="comment"># 가장 앞에 있는 값은 node1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="데이터-추가하기"><a href="#데이터-추가하기" class="headerlink" title="데이터 추가하기"></a>데이터 추가하기</h3><ul>
+<li>add 함수를 생성<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data, <span class="built_in">next</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">    self.data = data</span><br><span class="line">    self.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">data</span>):</span></span><br><span class="line">  node = head  <span class="comment"># 가장 앞의 노드부터 시작</span></span><br><span class="line">  <span class="keyword">while</span> node.<span class="built_in">next</span>:  <span class="comment"># 맨 끝의 노드를 찾아가는 while문</span></span><br><span class="line">    node = node.<span class="built_in">next</span></span><br><span class="line">  node.<span class="built_in">next</span> = Node(data)  <span class="comment"># 가장 끝 노드의 포인터주소를 새로운 노드로 지정</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 링크드 리스트에 데이터 추가해보기</span></span><br><span class="line">node1 = Node(<span class="number">1</span>)</span><br><span class="line">head = node1</span><br><span class="line"><span class="keyword">for</span> index <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">2</span>,<span class="number">10</span>):  <span class="comment"># 1만 있는 노드에 2~9까지 링크드 리스트로 추가</span></span><br><span class="line">  add(index)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="링크드-리스트-데이터-출력"><a href="#링크드-리스트-데이터-출력" class="headerlink" title="링크드 리스트 데이터 출력"></a>링크드 리스트 데이터 출력</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">node = head  <span class="comment"># node변수에 head값 node1을 할당</span></span><br><span class="line"><span class="keyword">while</span> node.<span class="built_in">next</span>:</span><br><span class="line">  print(node.data)</span><br><span class="line">  node = node.<span class="built_in">next</span></span><br><span class="line">print(node.data)  <span class="comment"># 마지막 노드까지 출력</span></span><br></pre></td></tr></table></figure>
+<p><strong>1</strong><br><strong>2</strong><br><strong>3</strong><br><strong>4</strong><br><strong>5</strong><br><strong>6</strong><br><strong>7</strong><br><strong>8</strong><br><strong>9</strong></p>
+<h2 id="복잡한-링크드-리스트-1-링크드-리스트-데이터-사이에-데이터를-추가"><a href="#복잡한-링크드-리스트-1-링크드-리스트-데이터-사이에-데이터를-추가" class="headerlink" title="복잡한 링크드 리스트 1 : 링크드 리스트 데이터 사이에 데이터를 추가"></a>복잡한 링크드 리스트 1 : 링크드 리스트 데이터 사이에 데이터를 추가</h2><ul>
+<li>링크드 리스트는 유지 관리에 부가적인 구현이 필요함<img src="https://www.fun-coding.org/00_Images/linkedlistadd.png" /></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1과 2사이에 추가 할 노드</span></span><br><span class="line">node3 = Node(<span class="number">1.5</span>)</span><br><span class="line"></span><br><span class="line">node = head</span><br><span class="line">search = <span class="literal">True</span></span><br><span class="line"><span class="keyword">while</span> search:</span><br><span class="line">  <span class="keyword">if</span> node.data == <span class="number">1</span>:  <span class="comment"># node.data가 추가할 노드의 앞 노드인 1인 경우 while문을 빠져나감</span></span><br><span class="line">    search = <span class="literal">False</span></span><br><span class="line">  <span class="keyword">else</span>:               <span class="comment"># 1이 아닌경우 다음 노드로 넘어간다</span></span><br><span class="line">    node = node.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 현재 node값이 1인 상태로 while문을 빠져나옴 (node.data=1, node.next=2)</span></span><br><span class="line">node_next = node.<span class="built_in">next</span>  <span class="comment"># node_next라는 변수에 현재 node의 포인터주소인 2를 넣음</span></span><br><span class="line">node.<span class="built_in">next</span> = node3      <span class="comment"># node의 포인터가 node3을 가리키도록 함</span></span><br><span class="line">node3.<span class="built_in">next</span> = node_next <span class="comment"># node3의 포인터가 2를 가리키도록 함</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1과 2 사이에 잘 들어갔는지 확인</span></span><br><span class="line">node = head</span><br><span class="line"><span class="keyword">while</span> node.<span class="built_in">next</span>:</span><br><span class="line">  print(node.data)</span><br><span class="line">  node = node.<span class="built_in">next</span></span><br><span class="line">print(node.data)</span><br></pre></td></tr></table></figure>
+<p><strong>1</strong><br><strong>1.5</strong><br><strong>2</strong><br><strong>3</strong><br><strong>4</strong><br><strong>5</strong><br><strong>6</strong><br><strong>7</strong><br><strong>8</strong><br><strong>9</strong></p>
+<h2 id="파이썬-객체지향-프로그래밍으로-링크드-리스트-구현하기-현재까지의-기능들-전체-통합"><a href="#파이썬-객체지향-프로그래밍으로-링크드-리스트-구현하기-현재까지의-기능들-전체-통합" class="headerlink" title="파이썬 객체지향 프로그래밍으로 링크드 리스트 구현하기 (현재까지의 기능들 전체 통합)"></a>파이썬 객체지향 프로그래밍으로 링크드 리스트 구현하기 (현재까지의 기능들 전체 통합)</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span>  <span class="comment"># 노드 생성 클래스</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data, <span class="built_in">next</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">    self.data = data</span><br><span class="line">    self.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NodeMgmt</span>:</span>  <span class="comment"># 링크드 리스트 관리 클래스</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data</span>):</span>  <span class="comment"># 맨 앞의 노드 값을 헤드로 설정</span></span><br><span class="line">    self.head = Node(data)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">self, data</span>):</span>  <span class="comment"># 링크드 리스트 맨 끝에 노드를 추가하는 함수</span></span><br><span class="line">    <span class="keyword">if</span> self.head == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">      self.head = Node(data)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">      node = self.head</span><br><span class="line">      <span class="keyword">while</span> node.<span class="built_in">next</span>:</span><br><span class="line">        node = node.<span class="built_in">next</span></span><br><span class="line">      node.<span class="built_in">next</span> = Node(data)</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">desc</span>(<span class="params">self</span>):</span>  <span class="comment"># 해당 링크드 리스트를 전체 출력하는 함수</span></span><br><span class="line">    node = self.head</span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">      print(node.data)</span><br><span class="line">      node = node.<span class="built_in">next</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 노드 생성과 확인</span></span><br><span class="line">linkedlist1 = NodeMgmt(<span class="number">0</span>)</span><br><span class="line">linkedlist1.desc()</span><br></pre></td></tr></table></figure>
+<p><strong>0</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 노드 추가와 확인</span></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">  linkedlist1.add(data)</span><br><span class="line">linkedlist.desc()</span><br></pre></td></tr></table></figure>
+<p><strong>0</strong><br><strong>1</strong><br><strong>2</strong><br><strong>3</strong><br><strong>4</strong><br><strong>5</strong><br><strong>6</strong><br><strong>7</strong><br><strong>8</strong><br><strong>9</strong></p>
+<h2 id="복잡한-링크드-리스트-2-특정-노드를-삭제"><a href="#복잡한-링크드-리스트-2-특정-노드를-삭제" class="headerlink" title="복잡한 링크드 리스트 2 : 특정 노드를 삭제"></a>복잡한 링크드 리스트 2 : 특정 노드를 삭제</h2><ul>
+<li><p>1번째 케이스 : head 삭제</p>
+</li>
+<li><p>2번째 케이스 : 마지막 노드 삭제</p>
+</li>
+<li><p>3번째 케이스 : 중간 노드 삭제</p>
+</li>
+<li><p>다음 코드는 위의 코드에서 delete 메서드만 추가한 것이므로 해당 메서드만 확인하면 됨</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data, <span class="built_in">next</span>=<span class="literal">None</span></span>):</span></span><br><span class="line">        self.data = data</span><br><span class="line">        self.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NodeMgmt</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data</span>):</span></span><br><span class="line">        self.head = Node(data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">self, data</span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.head == <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">            self.head = Node(data)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            node = self.head</span><br><span class="line">            <span class="keyword">while</span> node.<span class="built_in">next</span>:</span><br><span class="line">                node = node.<span class="built_in">next</span></span><br><span class="line">            node.<span class="built_in">next</span> = Node(data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">desc</span>(<span class="params">self</span>):</span></span><br><span class="line">        node = self.head</span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            <span class="built_in">print</span> (node.data)</span><br><span class="line">            node = node.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">delete</span>(<span class="params">self, data</span>):</span>  <span class="comment"># 노드 삭제 함수</span></span><br><span class="line">      <span class="keyword">if</span> self.head == <span class="string">&#x27;&#x27;</span>:  <span class="comment"># 링크드리스트에 값이 없음</span></span><br><span class="line">        print(<span class="string">&quot;No list&quot;</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> self.head.data == data:  <span class="comment"># 맨 앞의 노드를 삭제</span></span><br><span class="line">        temp = self.head</span><br><span class="line">        self.head = self.head.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">del</span> temp</span><br><span class="line">      <span class="keyword">else</span>:  <span class="comment"># 중간이나 맨 끝의 노드를 삭제</span></span><br><span class="line">        node = self.head</span><br><span class="line">        <span class="keyword">while</span> node.<span class="built_in">next</span>:</span><br><span class="line">          <span class="keyword">if</span> node.<span class="built_in">next</span>.data == data:</span><br><span class="line">            temp = node.<span class="built_in">next</span></span><br><span class="line">            noed.<span class="built_in">next</span> = node.<span class="built_in">next</span>.<span class="built_in">next</span></span><br><span class="line">            <span class="keyword">del</span> temp</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">          <span class="keyword">else</span>:</span><br><span class="line">            node = node.<span class="built_in">next</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<ul>
+<li>테스트 해보기<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 노드 하나 만들기</span></span><br><span class="line">linkedlist1 = NodeMgmt(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 노드 추가</span></span><br><span class="line"><span class="keyword">for</span> data <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>):</span><br><span class="line">  linkedlist1.add(data)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 노드 중 하나 삭제 (케이스 3: 중간값 삭제)</span></span><br><span class="line">linkedlist1.delete(<span class="number">4</span>)   <span class="comment"># 0, 1, 2, 3, 5, 6, 7, 8, 9</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="다양한-링크드-리스트-구조"><a href="#다양한-링크드-리스트-구조" class="headerlink" title="다양한 링크드 리스트 구조"></a>다양한 링크드 리스트 구조</h2><ul>
+<li><p>더블 링크드 리스트(Double Linked List) 기본 구조</p>
+<ul>
+<li>이중 연결 리스트라고도 함</li>
+<li>장점 : 양방향으로 연결되어 있어서 노드 탐색이 양쪽으로 모두 가능 (맨 앞에서부터 탐색해야하는 기존 링크드 리스트의 단점 보완)</li>
+</ul>
+<img src="https://www.fun-coding.org/00_Images/doublelinkedlist.png" /></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data, prev=<span class="literal">None</span>, <span class="built_in">next</span>=<span class="literal">None</span></span>):</span>  <span class="comment"># 기존의 링크드 리스트에서 prev 변수가 생김</span></span><br><span class="line">    self.data = data</span><br><span class="line">    self.prev = prev</span><br><span class="line">    self.<span class="built_in">next</span> = <span class="built_in">next</span></span><br><span class="line"></span><br><span class="line"> <span class="class"><span class="keyword">class</span> <span class="title">NodeMgmt</span>:</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, data</span>):</span></span><br><span class="line">     self.head = Node(data)</span><br><span class="line">     self.tail = self.head  <span class="comment"># 처음에 노드가 하나 생성되면 head나 tail이나 같다</span></span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">insert</span>(<span class="params">self, data</span>):</span></span><br><span class="line">     <span class="keyword">if</span> self.head == <span class="literal">None</span>:</span><br><span class="line">       self.head = <span class="literal">None</span>(data)</span><br><span class="line">       self.tail = self.head</span><br><span class="line">     <span class="keyword">else</span>:</span><br><span class="line">       node = self.head</span><br><span class="line">       <span class="keyword">while</span> node.<span class="built_in">next</span>:  <span class="comment"># 맨 끝 노드를 찾아가서</span></span><br><span class="line">         node = nede.<span class="built_in">next</span></span><br><span class="line">       new = Node(data)  <span class="comment"># 일단 새로운 노드를 만들고</span></span><br><span class="line">       node.<span class="built_in">next</span> = new   <span class="comment"># 맨 끝 노드의 포인터를 new로</span></span><br><span class="line">       new.prev = node   <span class="comment"># new의 prev 포인터를 원래의 맨 끝 노드로</span></span><br><span class="line">       self.tail = new   <span class="comment"># 맨 끝 노드가 new가 됐으므로 tail을 new로</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">desc</span>(<span class="params">self</span>):</span>  <span class="comment"># 모든 노드 출력 함수</span></span><br><span class="line">    node = self.head</span><br><span class="line">    <span class="keyword">while</span> node:</span><br><span class="line">      print(node.data)</span><br><span class="line">      node = node.<span class="built_in">next</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">search_from_head</span>(<span class="params">self, data</span>):</span>  <span class="comment"># 앞에서부터 찾는 함수</span></span><br><span class="line">        <span class="keyword">if</span> self.head == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        node = self.head</span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            <span class="keyword">if</span> node.data == data:</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                node = node.<span class="built_in">next</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">search_from_tail</span>(<span class="params">self, data</span>):</span>  <span class="comment"># 끝에서부터 찾는 함수</span></span><br><span class="line">        <span class="keyword">if</span> self.head == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">        node = self.tail</span><br><span class="line">        <span class="keyword">while</span> node:</span><br><span class="line">            <span class="keyword">if</span> node.data == data:</span><br><span class="line">                <span class="keyword">return</span> node</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                node = node.prev</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_before</span>(<span class="params">self, data, before_data</span>):</span>  <span class="comment"># 특정 숫자인 노드 앞에 데이터를 추가하는 함수</span></span><br><span class="line">        <span class="keyword">if</span> self.head == <span class="literal">None</span>:</span><br><span class="line">            self.head = Node(data)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            node = self.tail</span><br><span class="line">            <span class="keyword">while</span> node.data != before_data:</span><br><span class="line">                node = node.prev</span><br><span class="line">                <span class="keyword">if</span> node == <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            new = Node(data)  <span class="comment"># 특정 노드를 찾아야지만 실행되는 코드들</span></span><br><span class="line">            before_new = node.prev</span><br><span class="line">            before_new.<span class="built_in">next</span> = new</span><br><span class="line">            new.prev = before_new</span><br><span class="line">            new.<span class="built_in">next</span> = node</span><br><span class="line">            node.prev = new</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">insert_after</span>(<span class="params">self, data, after_data</span>):</span>  <span class="comment"># 특정 숫자인 노드 뒤에 데이터를 추가하는 함수</span></span><br><span class="line">        <span class="keyword">if</span> self.head == <span class="literal">None</span>:</span><br><span class="line">            self.head = Node(data)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            node = self.head</span><br><span class="line">            <span class="keyword">while</span> node.data != after_data:</span><br><span class="line">                node = node.<span class="built_in">next</span></span><br><span class="line">                <span class="keyword">if</span> node == <span class="literal">None</span>:</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            new = Node(data)</span><br><span class="line">            after_new = node.<span class="built_in">next</span></span><br><span class="line">            new.<span class="built_in">next</span> = after_new</span><br><span class="line">            new.prev = node</span><br><span class="line">            node.<span class="built_in">next</span> = new</span><br><span class="line">            <span class="keyword">if</span> new.<span class="built_in">next</span> == <span class="literal">None</span>:</span><br><span class="line">                self.tail = new</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linked-list/" rel="tag"># linked list</a>
+              <a href="/tags/double-linked-list/" rel="tag"># double linked list</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/04/TIL-210304-Git-Branch/" rel="prev" title="Git Branch">
+                  <i class="fa fa-chevron-left"></i> Git Branch
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/03/10/Queue/" rel="next" title="Queue">
+                  Queue <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CLARY</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
