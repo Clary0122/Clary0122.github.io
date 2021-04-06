@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"clary0122.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="Python, Data Science, Performance Marketing, Programming">
+<meta property="og:type" content="website">
+<meta property="og:title" content="채룽 블로그">
+<meta property="og:url" content="https://clary0122.github.io/page/2/index.html">
+<meta property="og:site_name" content="채룽 블로그">
+<meta property="og:description" content="Python, Data Science, Performance Marketing, Programming">
+<meta property="og:locale" content="en_US">
+<meta property="article:author" content="CLARY">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://clary0122.github.io/page/2/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'en'
+  };
+</script>
+<title>채룽 블로그</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">채룽 블로그</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CLARY</p>
+  <div class="site-description" itemprop="description">Python, Data Science, Performance Marketing, Programming</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Clary0122" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Clary0122" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Stack/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/10/Stack/" class="post-title-link" itemprop="url">Stack</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-10 02:01:36" itemprop="dateCreated datePublished" datetime="2021-03-10T02:01:36+09:00">2021-03-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:02:56" itemprop="dateModified" datetime="2021-04-07T02:02:56+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="스택-Stack"><a href="#스택-Stack" class="headerlink" title="스택 (Stack)"></a>스택 (Stack)</h1><ul>
+<li>데이터를 제한적으로 접근할 수 있는 구조</li>
+</ul>
+<ul>
+<li>한 쪽 끝에서만 자료를 넣거나 뺄 수 있는 구조</li>
+</ul>
+<ul>
+<li><strong>가장 나중에 쌓은 데이터를 가장 먼저 뺄 수 있는 구조</strong></li>
+</ul>
+<ul>
+<li>큐 : FIFO 정책</li>
+<li>스택 : LIFO 정책</li>
+</ul>
+<h2 id="스택-구조"><a href="#스택-구조" class="headerlink" title="스택 구조"></a>스택 구조</h2><ul>
+<li>스택은 LIFO(Last In, Fisrt Out) 또는 FILO(First In, Last Out) 데이터 관리 방식을 따름<ul>
+<li>LIFO: 마지막에 넣은 데이터를 가장 먼저 추출하는 데이터 관리 정책</li>
+<li>FILO: 처음에 넣은 데이터를 가장 마지막에 추출하는 데이터 관리 정책</li>
+<li>visualgo 에서 시연해보기 (<a target="_blank" rel="noopener" href="https://visualgo.net/en/list">https://visualgo.net/en/list</a>)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>대표적인 스택의 활용<ul>
+<li>컴퓨터 내부의 프로세스 구조의 함수 동작 방식</li>
+</ul>
+</li>
+</ul>
+<h2 id="스택의-용어"><a href="#스택의-용어" class="headerlink" title="스택의 용어"></a>스택의 용어</h2><ul>
+<li>push(): 데이터를 스택에 넣기</li>
+<li>pop(): 데이터를 스택에서 꺼내기</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/10/Stack/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Queue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/10/Queue/" class="post-title-link" itemprop="url">Queue</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-10 01:59:37" itemprop="dateCreated datePublished" datetime="2021-03-10T01:59:37+09:00">2021-03-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:01:06" itemprop="dateModified" datetime="2021-04-07T02:01:06+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐(Queue)"></a>큐(Queue)</h1><h2 id="큐-구조"><a href="#큐-구조" class="headerlink" title="큐 구조"></a>큐 구조</h2><ul>
+<li>줄을 서는 행위와 유사</li>
+<li>가장 먼저 넣은 데이터를 가장 먼저 꺼내는 구조</li>
+<li>음식점에서 가장 먼저 줄을 선 사람이 제일 먼저 음식점에 입장하는 것과 동일</li>
+<li><strong>FIFO (First In First Out)</strong> 또는 LILO (Last In Last Out)으로 스택과 꺼내는 순서가 반대<img src="https://www.fun-coding.org/00_Images/queue.png"></li>
+</ul>
+<ul>
+<li>출처: <a target="_blank" rel="noopener" href="http://www.stoimen.com/blog/2012/06/05/computer-algorithms-stack-and-queue-data-structure/">http://www.stoimen.com/blog/2012/06/05/computer-algorithms-stack-and-queue-data-structure/</a></li>
+</ul>
+<h2 id="큐-용어"><a href="#큐-용어" class="headerlink" title="큐 용어"></a>큐 용어</h2><ul>
+<li>Enqueue : 큐에 데이터를 넣는 기능</li>
+<li>Dequeue : 큐에서 데이터를 꺼내는 기능</li>
+<li>visualgo 에서 시연해보며 이해하기 (<a target="_blank" rel="noopener" href="https://visualgo.net/en/list">https://visualgo.net/en/list</a>)</li>
+</ul>
+<h2 id="Python-queue-라이브러리-활용해서-큐-자료구조-사용하기"><a href="#Python-queue-라이브러리-활용해서-큐-자료구조-사용하기" class="headerlink" title="Python queue 라이브러리 활용해서 큐 자료구조 사용하기"></a>Python queue 라이브러리 활용해서 큐 자료구조 사용하기</h2><ul>
+<li><strong>queue 라이브러리에는 다양한 큐 구조로 Queue(), LifoQueue(), PriorityQueue() 제공</strong></li>
+<li>프로그램을 작성할 때 프로그램에 따라 적합한 자료 구조를 사용</li>
+<li>Queue(): 가장 일반적인 큐 자료 구조</li>
+<li>LifoQueue(): 나중에 입력된 데이터가 먼저 출력되는 구조 (스택 구조라고 보면 됨)</li>
+<li>PriorityQueue(): 데이터마다 우선순위를 넣어서, 우선순위가 높은 순으로 데이터 출력</li>
+</ul>
+<h3 id="Queue-로-큐-만들기-일반적인-큐-FIFO"><a href="#Queue-로-큐-만들기-일반적인-큐-FIFO" class="headerlink" title="Queue()로 큐 만들기 (일반적인 큐,FIFO)"></a>Queue()로 큐 만들기 (일반적인 큐,FIFO)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"></span><br><span class="line">data_queue = queue.Queue()  <span class="comment"># 큐 생성</span></span><br><span class="line">data_queue.put(<span class="string">&quot;hello&quot;</span>)  <span class="comment"># &#x27;hello&#x27; 데이터 넣음</span></span><br><span class="line">data_queue.put(<span class="number">1</span>)  <span class="comment"># 1 데이터 넣음</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/10/Queue/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Linked-List/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/10/Linked-List/" class="post-title-link" itemprop="url">Linked List</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-10 01:54:58" itemprop="dateCreated datePublished" datetime="2021-03-10T01:54:58+09:00">2021-03-10</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 01:56:55" itemprop="dateModified" datetime="2021-04-07T01:56:55+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="링크드-리스트-Linked-List"><a href="#링크드-리스트-Linked-List" class="headerlink" title="링크드 리스트 (Linked List)"></a>링크드 리스트 (Linked List)</h1><h2 id="링크드-리스트-Linked-List-구조"><a href="#링크드-리스트-Linked-List-구조" class="headerlink" title="링크드 리스트(Linked List) 구조"></a>링크드 리스트(Linked List) 구조</h2><ul>
+<li><strong>연결 리스트</strong>라고도함</li>
+<li>배열은 순차적으로 연결된 공간에 데이터를 나열하는 데이터 구조</li>
+<li>링크드 리스트는 떨어진 곳에 존재하는 데이터를 화살표로 연결해서 관리하는 데이터 구조</li>
+<li>본래 C언어에서는 주요한 데이터 구조이지만, <strong>파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원</strong></li>
+<li><span style="color:blue">코테에 간단하게 구현하라는 식으로 나올 수 있으니 구현 코드를 잘 익혀두자!</span></li>
+</ul>
+<h2 id="용어"><a href="#용어" class="headerlink" title="용어"></a>용어</h2><ul>
+<li>노드(Node) : 데이터 저장 단위 (데이터값, 포인터)로 구성</li>
+<li>포인터(Pointer) : 각 노드 안에서, 다음이나 이전의 노드와의 연결 정보를 가지고 있는 공간</li>
+<li>일반적인 링크드 리스트 형태<img src="https://www.fun-coding.org/00_Images/linkedlist.png"></li>
+</ul>
+<h2 id="링크드-리스트의-장단점-전통적인-C언어에서의-배열과-링크드-리스트"><a href="#링크드-리스트의-장단점-전통적인-C언어에서의-배열과-링크드-리스트" class="headerlink" title="링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)"></a>링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)</h2><ul>
+<li>장점<ul>
+<li>미리 데이터 공간을 할당하지 않아도 됨 (배열은 미리 데이터공간을 할당해야함)</li>
+</ul>
+</li>
+<li>단점<ul>
+<li>저장공간 효율이 높지 않음 -&gt; 연결을 위한 별도 데이터 공간이 필요하기 때문에</li>
+<li>접근 속도가 느림 -&gt; 연결 정보를 찾는 시간이 필요하기 때문</li>
+<li>중간 데이터 삭제 시, 앞뒤 데이터의 연결을 재구성해야하는 부가적인 작업</li>
+</ul>
+</li>
+</ul>
+<h2 id="간단한-링크드-리스트-예"><a href="#간단한-링크드-리스트-예" class="headerlink" title="간단한 링크드 리스트 예"></a>간단한 링크드 리스트 예</h2><h3 id="Node-구현"><a href="#Node-구현" class="headerlink" title="Node 구현"></a>Node 구현</h3><ul>
+<li>보통 Python에서 링크드 리스트 구현 시, 클래스를 활용함</li>
+<li>-&gt; 클래스를 사용해서 구현하는 이유 : 데이터 두 가지(데이터, 주소)로 이루어져 있는 노드를 저장할 수 있는 구조를 만들려면 클래스가 수월</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/10/Linked-List/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/04/TIL-210304-Git-Branch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/04/TIL-210304-Git-Branch/" class="post-title-link" itemprop="url">Git Branch</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-04 21:20:20" itemprop="dateCreated datePublished" datetime="2021-03-04T21:20:20+09:00">2021-03-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-06 18:31:32" itemprop="dateModified" datetime="2021-04-06T18:31:32+09:00">2021-04-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><p>분기점을 생성하여 독립적으로 코드를 변경할 수 있도록 도와주는 모델</p>
+<p><img src="https://user-images.githubusercontent.com/79209568/109974307-c285f200-7d3c-11eb-8695-384b239dcee6.png" alt="image"></p>
+<h2 id="Branch-명령어"><a href="#Branch-명령어" class="headerlink" title="Branch 명령어"></a>Branch 명령어</h2><h3 id="Show-Branch"><a href="#Show-Branch" class="headerlink" title="Show Branch"></a>Show Branch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 가능한 local Branch 확인--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 가능한 remote Branch 확인--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -r</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 가능한 모든 Branch 확인--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -a</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Create-Branch"><a href="#Create-Branch" class="headerlink" title="Create Branch"></a>Create Branch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Branch 생성--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch &#123;branch name&#125;</span></span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/04/TIL-210304-Git-Branch/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/03/TIL-210303-Git-Start/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/03/03/TIL-210303-Git-Start/" class="post-title-link" itemprop="url">Git Start</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-03-03 19:22:48" itemprop="dateCreated datePublished" datetime="2021-03-03T19:22:48+09:00">2021-03-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-06 18:31:06" itemprop="dateModified" datetime="2021-04-06T18:31:06+09:00">2021-04-06</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="git-start"><a href="#git-start" class="headerlink" title="git start"></a>git start</h1><h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a><font style:color="red">Done</font></h2><h3 id="shell-command"><a href="#shell-command" class="headerlink" title="shell command"></a>shell command</h3><h4 id="리스트-출력"><a href="#리스트-출력" class="headerlink" title="리스트 출력"></a>리스트 출력</h4><ul>
+<li><strong>ls</strong> : 전체 리스트</li>
+<li><strong>ls -a</strong> : 숨긴 파일까지 출력</li>
+<li><strong>ls -l</strong> : 자세히</li>
+<li><strong>ls -al</strong> : 합쳐서 사용 가능<h4 id="디렉토리"><a href="#디렉토리" class="headerlink" title="디렉토리"></a>디렉토리</h4></li>
+<li><strong>mkdir {디렉토리명}</strong> : 생성</li>
+<li><strong>rm {디렉토리명}</strong> : (디렉토리 내에 파일 없을 시 가능)삭제</li>
+<li>**rm -r {디렉토리명} **: (디렉토리 내에 파일까지) 삭제</li>
+</ul>
+<h4 id="파일"><a href="#파일" class="headerlink" title="파일"></a>파일</h4><ul>
+<li><strong>touch {파일명}</strong> : 생성</li>
+<li><strong>mv {파일명} { 디렉토리명}</strong> : 디렉토리로 파일 옮기기</li>
+<li><strong>mv {파일명} {새로운 파일명}</strong> : 파일 명 변경(새로운 파일 명에 디렉토리 추가 시 그 디렉토리에 생성됨) </li>
+<li><strong>cp {파일명} [{디렉토리}]</strong> : 복사</li>
+<li><strong>rm {파일명}</strong> : 삭제</li>
+<li><strong>cat {파일명}</strong> : 내용 확인</li>
+</ul>
+<h3 id="vim-command"><a href="#vim-command" class="headerlink" title="vim command"></a>vim command</h3><h4 id="vim-열기"><a href="#vim-열기" class="headerlink" title="vim 열기"></a>vim 열기</h4><ul>
+<li><strong>vi {파일명}</strong></li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/03/03/TIL-210303-Git-Start/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CLARY</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

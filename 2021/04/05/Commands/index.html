@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"clary0122.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="명령어 구조 명령어 명령어 directory(작업대상) 또는 file 한 칸 이상 꼭 띄어쓰기! ex) ls &#x2F;etc&#x2F;passwd   명령어 [option] 명령어 + 옵션의 경우 한 칸 띄고 ‘-‘를 써준다. ex) ls -l   명령어 [option] directory 또는 file ex) ls -l &#x2F;home 옵션이 맨 뒤로 가도 작동한다. (ls &#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Commands">
+<meta property="og:url" content="https://clary0122.github.io/2021/04/05/Commands/index.html">
+<meta property="og:site_name" content="채룽 블로그">
+<meta property="og:description" content="명령어 구조 명령어 명령어 directory(작업대상) 또는 file 한 칸 이상 꼭 띄어쓰기! ex) ls &#x2F;etc&#x2F;passwd   명령어 [option] 명령어 + 옵션의 경우 한 칸 띄고 ‘-‘를 써준다. ex) ls -l   명령어 [option] directory 또는 file ex) ls -l &#x2F;home 옵션이 맨 뒤로 가도 작동한다. (ls &#x2F;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/113582548-78599e80-9663-11eb-851b-6da3d542126a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/113591375-c6c06a80-966e-11eb-816f-5046e48ad45e.png">
+<meta property="article:published_time" content="2021-04-04T17:21:40.000Z">
+<meta property="article:modified_time" content="2021-04-06T17:22:36.214Z">
+<meta property="article:author" content="CLARY">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="command">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/79209568/113582548-78599e80-9663-11eb-851b-6da3d542126a.png">
+
+
+<link rel="canonical" href="https://clary0122.github.io/2021/04/05/Commands/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>Commands | 채룽 블로그</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">채룽 블로그</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EB%AA%85%EB%A0%B9%EC%96%B4-%EA%B5%AC%EC%A1%B0"><span class="nav-number">1.</span> <span class="nav-text">명령어 구조</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%EA%B8%B0%EB%B3%B8-%EB%AA%85%EB%A0%B9%EC%96%B41"><span class="nav-number">2.</span> <span class="nav-text">기본 명령어1</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pwd"><span class="nav-number">2.1.</span> <span class="nav-text">pwd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%98%84%EC%9E%AC-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EC%9D%98-%EA%B2%BD%EB%A1%9C-%ED%99%95%EC%9D%B8"><span class="nav-number">2.1.1.</span> <span class="nav-text">현재 디렉터리의 경로 확인</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-pwd"><span class="nav-number">2.1.2.</span> <span class="nav-text">format : pwd</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cd"><span class="nav-number">2.2.</span> <span class="nav-text">cd</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EB%B3%80%EA%B2%BD%ED%95%98%EA%B3%A0%EC%9E%90-%ED%95%A0-%EB%95%8C"><span class="nav-number">2.2.1.</span> <span class="nav-text">디렉터리를 변경하고자 할 때</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format1-cd-directory"><span class="nav-number">2.2.2.</span> <span class="nav-text">format1 : cd directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format2-cd-%EB%98%90%EB%8A%94-cd"><span class="nav-number">2.2.3.</span> <span class="nav-text">format2 : cd (또는 cd ~)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format3-cd-%EC%82%AC%EC%9A%A9%EC%9E%90"><span class="nav-number">2.2.4.</span> <span class="nav-text">format3 : cd ~사용자</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%A0%88%EB%8C%80-%EA%B2%BD%EB%A1%9C"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">절대 경로</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EC%83%81%EB%8C%80-%EA%B2%BD%EB%A1%9C"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">상대 경로</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ls"><span class="nav-number">2.3.</span> <span class="nav-text">ls</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EC%9D%98-%EB%AA%A9%EB%A1%9D%EC%9D%84-%EC%B6%9C%EB%A0%A5"><span class="nav-number">2.3.1.</span> <span class="nav-text">디렉터리의 목록을 출력</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-ls-option-directory"><span class="nav-number">2.3.2.</span> <span class="nav-text">format: ls [option] directory</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option"><span class="nav-number">2.3.3.</span> <span class="nav-text">option</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%EA%B8%B0%EB%B3%B8-%EB%AA%85%EB%A0%B9%EC%96%B42"><span class="nav-number">3.</span> <span class="nav-text">기본 명령어2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cp"><span class="nav-number">3.1.</span> <span class="nav-text">cp</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%B4%EB%82%98-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EB%B3%B5%EC%82%AC"><span class="nav-number">3.1.1.</span> <span class="nav-text">파일이나 디렉터리를 복사</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-cp-option-%EC%9B%90%EB%B3%B8%ED%8C%8C%EC%9D%BC-%EC%82%AC%EB%B3%B8%ED%8C%8C%EC%9D%BC"><span class="nav-number">3.1.2.</span> <span class="nav-text">format: cp [option] 원본파일 사본파일</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-1"><span class="nav-number">3.1.3.</span> <span class="nav-text">option</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%B6%94%EA%B0%80-%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="nav-number">3.1.4.</span> <span class="nav-text">추가 사용법</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mv"><span class="nav-number">3.2.</span> <span class="nav-text">mv</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%B4%EB%82%98-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EC%9D%B4%EB%8F%99-%EC%9B%90%EB%B3%B8-%EC%9E%90%EC%B2%B4%EA%B0%80-%EC%9D%B4%EB%8F%99%ED%95%98%EB%8A%94-%EA%B2%83"><span class="nav-number">3.2.1.</span> <span class="nav-text">파일이나 디렉터리를 이동 (원본 자체가 이동하는 것)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-mv-option-%EC%9B%90%EB%B3%B8%ED%8C%8C%EC%9D%BC-%EC%82%AC%EB%B3%B8%ED%8C%8C%EC%9D%BC"><span class="nav-number">3.2.2.</span> <span class="nav-text">format: mv [option] 원본파일 사본파일</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-number">3.3.</span> <span class="nav-text">mkdir</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EC%83%9D%EC%84%B1"><span class="nav-number">3.3.1.</span> <span class="nav-text">디렉터리를 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-mkdir-option-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC"><span class="nav-number">3.3.2.</span> <span class="nav-text">format: mkdir [option] 디렉터리</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rmdir"><span class="nav-number">3.4.</span> <span class="nav-text">rmdir</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EC%82%AD%EC%A0%9C"><span class="nav-number">3.4.1.</span> <span class="nav-text">디렉터리를 삭제</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-rmdir-option-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC"><span class="nav-number">3.4.2.</span> <span class="nav-text">format: rmdir [option] 디렉터리</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rm"><span class="nav-number">3.5.</span> <span class="nav-text">rm</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%B4%EB%82%98-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EC%82%AD%EC%A0%9C"><span class="nav-number">3.5.1.</span> <span class="nav-text">파일이나 디렉터리를 삭제</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-rm-option-%ED%8C%8C%EC%9D%BC-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC"><span class="nav-number">3.5.2.</span> <span class="nav-text">format: rm [option] 파일|디렉터리</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-3"><span class="nav-number">3.5.3.</span> <span class="nav-text">option</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%EA%B8%B0%EB%B3%B8-%EB%AA%85%EB%A0%B9%EC%96%B43"><span class="nav-number">4.</span> <span class="nav-text">기본 명령어3</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ln"><span class="nav-number">4.1.</span> <span class="nav-text">ln</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%95%98%EB%93%9C%EB%A7%81%ED%81%AC%EB%82%98-%EC%8B%AC%EB%B3%BC%EB%A6%AD%EB%A7%81%ED%81%AC-%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%83%9D%EC%84%B1"><span class="nav-number">4.1.1.</span> <span class="nav-text">하드링크나 심볼릭링크 파일을 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format"><span class="nav-number">4.1.2.</span> <span class="nav-text">format</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-4"><span class="nav-number">4.1.3.</span> <span class="nav-text">option</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%ED%95%98%EB%93%9C%EB%A7%81%ED%81%AC-%EC%86%8C%ED%94%84%ED%8A%B8%EB%A7%81%ED%81%AC-%EC%8B%AC%EB%B3%BC%EB%A6%AD%EB%A7%81%ED%81%AC-%EB%B9%84%EA%B5%90"><span class="nav-number">4.1.3.1.</span> <span class="nav-text">하드링크, 소프트링크, 심볼릭링크 비교</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alias"><span class="nav-number">4.2.</span> <span class="nav-text">alias</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%B3%B5%EC%9E%A1%ED%95%9C-%EB%AA%85%EB%A0%B9%EC%96%B4%EC%99%80-%EC%98%B5%EC%85%98%EC%9D%84-%EC%A7%A7%EC%9D%80-%EB%AC%B8%EC%9E%90%EC%97%B4%EB%A1%9C-%EB%B0%94%EA%BF%94%EC%A4%8C"><span class="nav-number">4.2.1.</span> <span class="nav-text">복잡한 명령어와 옵션을 짧은 문자열로 바꿔줌</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format1-alias-%E2%86%92-%EA%B8%B0%EB%B3%B8%EC%9C%BC%EB%A1%9C-%EB%93%B1%EB%A1%9D%EB%90%9C-alias%EB%93%A4%EC%9D%84-%ED%99%95%EC%9D%B8%ED%95%A0-%EC%88%98-%EC%9E%88%EC%9D%8C"><span class="nav-number">4.2.2.</span> <span class="nav-text">format1: alias → 기본으로 등록된 alias들을 확인할 수 있음</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format2-alias-%EB%AC%B8%EC%9E%90-39-%EB%AA%85%EB%A0%B9%EC%96%B4-39"><span class="nav-number">4.2.3.</span> <span class="nav-text">format2: alias 문자&#x3D;&#39;명령어&#39;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format3-alias-%EB%AC%B8%EC%9E%90-39-%EB%AA%85%EB%A0%B9%EC%96%B4-option-39"><span class="nav-number">4.2.4.</span> <span class="nav-text">format3: alias 문자&#x3D;&#39;명령어 [option]&#39;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format4-unalias-%EB%AC%B8%EC%9E%90-%E2%86%92-alias-%ED%95%B4%EC%A0%9C"><span class="nav-number">4.2.5.</span> <span class="nav-text">format4: unalias 문자 → alias 해제</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#touch"><span class="nav-number">4.3.</span> <span class="nav-text">touch</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%84-%EC%83%9D%EC%84%B1"><span class="nav-number">4.3.1.</span> <span class="nav-text">파일을 생성</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-touch-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.3.2.</span> <span class="nav-text">format: touch [option] 파일</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#head"><span class="nav-number">4.4.</span> <span class="nav-text">head</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%98-%EB%82%B4%EC%9A%A9%EC%9D%84-%EC%B6%9C%EB%A0%A5"><span class="nav-number">4.4.1.</span> <span class="nav-text">파일의 내용을 출력</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-head-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.4.2.</span> <span class="nav-text">format: head [option] 파일</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-5"><span class="nav-number">4.4.3.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tail"><span class="nav-number">4.5.</span> <span class="nav-text">tail</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%98-%EB%82%B4%EC%9A%A9%EC%9D%84-%EC%B6%9C%EB%A0%A5-1"><span class="nav-number">4.5.1.</span> <span class="nav-text">파일의 내용을 출력</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-tail-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.5.2.</span> <span class="nav-text">format: tail [option] 파일</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-6"><span class="nav-number">4.5.3.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#man"><span class="nav-number">4.6.</span> <span class="nav-text">man</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EB%AA%A8%EB%A5%B4%EB%8A%94-%EB%AA%85%EB%A0%B9%EC%96%B4%EB%A5%BC-%EC%A0%81%EC%9C%BC%EB%A9%B4-%EC%96%B4%EB%96%A4-%EA%B2%83%EC%9D%B8%EC%A7%80-%ED%99%95%EC%9D%B8-%EA%B0%80%EB%8A%A5"><span class="nav-number">4.6.1.</span> <span class="nav-text">모르는 명령어를 적으면 어떤 것인지 확인 가능</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-man-option-%EB%AA%85%EB%A0%B9%EC%96%B4"><span class="nav-number">4.6.2.</span> <span class="nav-text">format: &#96;man [option] 명령어</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-7"><span class="nav-number">4.6.3.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%80%93help"><span class="nav-number">4.7.</span> <span class="nav-text">–help</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%83%81%EC%84%B8-%EB%8F%84%EC%9B%80%EB%A7%90"><span class="nav-number">4.7.1.</span> <span class="nav-text">상세 도움말</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-%EB%AA%85%EB%A0%B9%EC%96%B4-help"><span class="nav-number">4.7.2.</span> <span class="nav-text">format: 명령어 --help</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#more"><span class="nav-number">4.8.</span> <span class="nav-text">more</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%84-%ED%99%94%EB%A9%B4%EB%8B%A8%EC%9C%84%EB%A1%9C-%EC%B6%9C%EB%A0%A5"><span class="nav-number">4.8.1.</span> <span class="nav-text">파일을 화면단위로 출력</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-more-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.8.2.</span> <span class="nav-text">format: more [option] 파일</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-8"><span class="nav-number">4.8.3.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#less"><span class="nav-number">4.9.</span> <span class="nav-text">less</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC-%EB%82%B4%EC%9A%A9%EC%9D%84-%ED%8E%98%EC%9D%B4%EC%A7%80-%EB%8B%A8%EC%9C%84%EB%A1%9C-%EC%B6%9C%EB%A0%A5"><span class="nav-number">4.9.1.</span> <span class="nav-text">파일 내용을 페이지 단위로 출력</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-less-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.9.2.</span> <span class="nav-text">format: less [option] 파일</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#option-9"><span class="nav-number">4.9.3.</span> <span class="nav-text">option</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nl"><span class="nav-number">4.10.</span> <span class="nav-text">nl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%98-%EA%B0%81-%EC%A4%84%EC%97%90-%EB%B2%88%ED%98%B8%EB%A5%BC-%EB%B6%80%EC%97%AC"><span class="nav-number">4.10.1.</span> <span class="nav-text">파일의 각 줄에 번호를 부여</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-nl-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.10.2.</span> <span class="nav-text">format: nl [option] 파일</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cat"><span class="nav-number">4.11.</span> <span class="nav-text">cat</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC%EC%9D%98-%EB%82%B4%EC%9A%A9%EC%9D%84-%EC%B6%9C%EB%A0%A5-2"><span class="nav-number">4.11.1.</span> <span class="nav-text">파일의 내용을 출력</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format-cat-option-%ED%8C%8C%EC%9D%BC"><span class="nav-number">4.11.2.</span> <span class="nav-text">format: cat [option] 파일</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#find"><span class="nav-number">4.12.</span> <span class="nav-text">find</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%EC%A3%BC%EC%96%B4%EC%A7%84-%EC%A1%B0%EA%B1%B4%EC%9D%84-%EA%B2%80%EC%83%89%ED%95%98%EC%97%AC-%ED%8C%8C%EC%9D%BC%EC%9D%B4%EB%82%98-%EB%94%94%EB%A0%89%ED%84%B0%EB%A6%AC%EB%A5%BC-%EC%B0%BE%EC%9D%8C"><span class="nav-number">4.12.1.</span> <span class="nav-text">주어진 조건을 검색하여 파일이나 디렉터리를 찾음</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format1-find-%EA%B2%BD%EB%A1%9C-name-%EC%B0%BE%EC%9D%84%EC%9D%B4%EB%A6%84-%E2%86%92-%EA%B2%BD%EB%A1%9C-%ED%95%98%EC%9C%84%EC%97%90-%EC%B0%BE%EC%9D%84-%EC%9D%B4%EB%A6%84%EC%9D%84-%EA%B2%80%EC%83%89"><span class="nav-number">4.12.2.</span> <span class="nav-text">format1: find 경로 -name 찾을이름 → 경로 하위에 찾을 이름을 검색</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format2-find-%EA%B2%BD%EB%A1%9C-name-%EC%B0%BE%EC%9D%84%EC%9D%B4%EB%A6%84-type-f-d-l-%E2%86%92-%EA%B2%BD%EB%A1%9C-%ED%95%98%EC%9C%84%EC%97%90-%EC%B0%BE%EC%9D%84-%EC%9D%B4%EB%A6%84%EC%9D%98-%ED%83%80%EC%9E%85%EC%9D%84-%EC%A7%80%EC%A0%95%ED%95%98%EC%97%AC-%EA%B2%80%EC%83%89"><span class="nav-number">4.12.3.</span> <span class="nav-text">format2: find 경로 -name 찾을이름 -type f|d|l → 경로 하위에 찾을 이름의 타입을 지정하여 검색</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format3-find-%EA%B2%BD%EB%A1%9C-newer-%EC%B0%BE%EC%9D%84%EC%9D%B4%EB%A6%84-%E2%86%92-%EA%B2%BD%EB%A1%9C-%ED%95%98%EC%9C%84%EC%97%90-%EC%B0%BE%EC%9D%84-%EC%9D%B4%EB%A6%84-%EC%9D%B4%ED%9B%84%EC%97%90-%EC%83%9D%EC%84%B1-%EB%98%90%EB%8A%94-%EC%88%98%EC%A0%95%EB%90%9C-%EA%B2%83%EB%93%A4%EC%9D%84-%EA%B2%80%EC%83%89"><span class="nav-number">4.12.4.</span> <span class="nav-text">format3: find 경로 -newer 찾을이름 → 경로 하위에 찾을 이름 이후에 생성 또는 수정된 것들을 검색</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#format4-find-%EA%B2%BD%EB%A1%9C-name-%EC%B0%BE%EC%9D%84%EC%9D%B4%EB%A6%84-exec-%EB%AA%85%EB%A0%B9%EC%96%B4-%E2%86%92-%EA%B2%BD%EB%A1%9C-%ED%95%98%EC%9C%84%EC%97%90-%EC%B0%BE%EC%9D%84-%EC%9D%B4%EB%A6%84%EC%9D%84-%EA%B2%80%EC%83%89%ED%95%98%EA%B3%A0-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%88%98%ED%96%89"><span class="nav-number">4.12.5.</span> <span class="nav-text">format4: find 경로 -name 찾을이름 -exec 명령어 &amp;#123;&amp;#125;\; → 경로 하위에 찾을 이름을 검색하고 명령어 수행</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CLARY</p>
+  <div class="site-description" itemprop="description">Python, Data Science, Performance Marketing, Programming</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Clary0122" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Clary0122" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/05/Commands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Commands
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-05 02:21:40" itemprop="dateCreated datePublished" datetime="2021-04-05T02:21:40+09:00">2021-04-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:22:36" itemprop="dateModified" datetime="2021-04-07T02:22:36+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="명령어-구조"><a href="#명령어-구조" class="headerlink" title="명령어 구조"></a>명령어 구조</h1><ol>
+<li><strong>명령어</strong></li>
+<li><strong>명령어 directory(작업대상) 또는 file</strong><ul>
+<li>한 칸 이상 꼭 띄어쓰기!</li>
+<li>ex) ls /etc/passwd</li>
+</ul>
+</li>
+<li><strong>명령어 [option]</strong><ul>
+<li>명령어 + 옵션의 경우 한 칸 띄고 ‘-‘를 써준다.</li>
+<li>ex) ls -l</li>
+</ul>
+</li>
+<li><strong>명령어 [option] directory 또는 file</strong><ul>
+<li>ex) ls -l /home</li>
+<li>옵션이 맨 뒤로 가도 작동한다. (ls /home -l)</li>
+</ul>
+</li>
+<li><strong>명령어 [option] [sub option]</strong><ul>
+<li>ex) ls -l -d : 옵션끼리도 띄어서 쓴다</li>
+<li>ex) ls -ld : 하나의 ‘-‘에 옵션 여러개를 쓸 수도 있다.(하지만 순서가 바뀌면 안되는 옵션도 있으니 주의해야한다)</li>
+</ul>
+</li>
+<li><strong>명령어 [option] [sub option] directory 또는 file</strong></li>
+</ol>
+<h1 id="기본-명령어1"><a href="#기본-명령어1" class="headerlink" title="기본 명령어1"></a>기본 명령어1</h1><h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><blockquote>
+<h3 id="현재-디렉터리의-경로-확인"><a href="#현재-디렉터리의-경로-확인" class="headerlink" title="현재 디렉터리의 경로 확인"></a>현재 디렉터리의 경로 확인</h3></blockquote>
+<h3 id="format-pwd"><a href="#format-pwd" class="headerlink" title="format : pwd"></a>format : <code>pwd</code></h3><h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><blockquote>
+<h3 id="디렉터리를-변경하고자-할-때"><a href="#디렉터리를-변경하고자-할-때" class="headerlink" title="디렉터리를 변경하고자 할 때"></a>디렉터리를 변경하고자 할 때</h3></blockquote>
+<h3 id="format1-cd-directory"><a href="#format1-cd-directory" class="headerlink" title="format1 : cd directory"></a>format1 : <code>cd directory</code></h3><p>(file은 안됨)</p>
+<h3 id="format2-cd-또는-cd"><a href="#format2-cd-또는-cd" class="headerlink" title="format2 : cd (또는 cd ~)"></a>format2 : <code>cd (또는 cd ~)</code></h3><ul>
+<li>현재 로그인한 계정의 홈 디렉터리로 변경<h3 id="format3-cd-사용자"><a href="#format3-cd-사용자" class="headerlink" title="format3 : cd ~사용자"></a>format3 : <code>cd ~사용자</code></h3></li>
+<li>지정한 사용자의 홈 디렉터리로 변경</li>
+<li>ex) cd /home/itbank = cd ~itbank</li>
+</ul>
+<h4 id="절대-경로"><a href="#절대-경로" class="headerlink" title="절대 경로"></a>절대 경로</h4><blockquote>
+<p>파일 시스템 전체를 기준으로 파일이나 디렉터리의 절대적인 위치를 기준으로 시작하는 경로 (쉽게 말해서, <strong>모든 경로를 다 쓰는 것</strong>)</p>
+</blockquote>
+<ul>
+<li>ex) 현재 존재하는 directory<ul>
+<li>/a/b/c</li>
+<li>/1/2/3</li>
+</ul>
+</li>
+<li>현재 위치가 b인데 3으로 이동하고 싶을 경우: <strong>cd /1/2/3</strong></li>
+<li>절대 경로 ‘/‘를 쓰고 이동해야 함!</li>
+<li>하지만 최상위 경로 root의 경우 <strong>cd /root</strong> 대신 <strong>cd root</strong> 해도 됨<h4 id="상대-경로"><a href="#상대-경로" class="headerlink" title="상대 경로"></a>상대 경로</h4><blockquote>
+<p>현재 작업하고 있는 디렉터리를 기준으로 파일이나 디렉터리의 상대적인 위치를 말함</p>
+</blockquote>
+</li>
+<li>. : 현재 디렉토리  ex) cd .</li>
+<li>.. : 상위 디렉토리  ex) cd ..</li>
+</ul>
+<h2 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h2><blockquote>
+<h3 id="디렉터리의-목록을-출력"><a href="#디렉터리의-목록을-출력" class="headerlink" title="디렉터리의 목록을 출력"></a>디렉터리의 목록을 출력</h3></blockquote>
+<h3 id="format-ls-option-directory"><a href="#format-ls-option-directory" class="headerlink" title="format: ls [option] directory"></a>format: <code>ls [option] directory</code></h3><h3 id="option"><a href="#option" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-l</strong> : 자세히<br> <img src="https://user-images.githubusercontent.com/79209568/113582548-78599e80-9663-11eb-851b-6da3d542126a.png" alt="image"><ul>
+<li>맨앞’-‘ : 파일 (d:디렉터리)</li>
+<li>1 : 링크 수</li>
+<li>root : user id</li>
+<li>root : group id</li>
+<li>4291 : 용량</li>
+<li>4월 6 06:24 : 생성날짜</li>
+<li>grub.cfg : 해당 파일명</li>
+</ul>
+</li>
+<li><strong>-a</strong> : .(숨김)을 포함하여 디렉터리나 파일을 출력</li>
+<li><strong>-d</strong> : 지정한 디렉터리나 파일을 출력<ul>
+<li>자기 자신을 출력. 하위의 것을 보는 것이 아니라 지정한 것 자체를 보고싶을 때 사용한다.</li>
+</ul>
+</li>
+<li><strong>-n</strong> : UID, GID를 숫자로 출력</li>
+<li><strong>-R</strong> : 지정한 디렉터리 하위의 디렉터리나 파일을 출력(존재하는 하위에 있는 모든 것들을 출력)</li>
+<li><strong>-F</strong> : 파일의 형식을 기호로 출력<ul>
+<li>디렉터리 : /</li>
+<li>파일 : 없음</li>
+<li>바로가기 : @</li>
+<li>실행파일 : *</li>
+</ul>
+</li>
+</ul>
+<h1 id="기본-명령어2"><a href="#기본-명령어2" class="headerlink" title="기본 명령어2"></a>기본 명령어2</h1><h2 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h2><blockquote>
+<h3 id="파일이나-디렉터리를-복사"><a href="#파일이나-디렉터리를-복사" class="headerlink" title="파일이나 디렉터리를 복사"></a>파일이나 디렉터리를 복사</h3></blockquote>
+<h3 id="format-cp-option-원본파일-사본파일"><a href="#format-cp-option-원본파일-사본파일" class="headerlink" title="format: cp [option] 원본파일 사본파일"></a>format: <code>cp [option] 원본파일 사본파일</code></h3><h3 id="option-1"><a href="#option-1" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-p</strong> : 원본 그대로 복사 (생성 시간까지 원본 그대로)<ul>
+<li>ex) cp -p /backup/test1 /new</li>
+</ul>
+</li>
+<li><strong>-r</strong> : 디렉터리를 복사<ul>
+<li>ex) cp -r /backup<h3 id="추가-사용법"><a href="#추가-사용법" class="headerlink" title="추가 사용법"></a>추가 사용법</h3></li>
+</ul>
+</li>
+<li>사본파일에 따로 파일이름을 적지 않으면 원본파일과 같은 이름으로 사본이 생성된다.</li>
+<li>여러 파일을 한 번에 복사할 수 있다.<ul>
+<li>cp 원본1 원본2 원본3 디렉터리</li>
+<li>이 경우 별도의 이름을 지정할 수 없음</li>
+</ul>
+</li>
+<li>cp 디렉터러/* 다른디렉터리 : 해당 디렉터리의 모든것을 복사</li>
+</ul>
+<h2 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h2><blockquote>
+<h3 id="파일이나-디렉터리를-이동-원본-자체가-이동하는-것"><a href="#파일이나-디렉터리를-이동-원본-자체가-이동하는-것" class="headerlink" title="파일이나 디렉터리를 이동 (원본 자체가 이동하는 것)"></a>파일이나 디렉터리를 이동 (원본 자체가 이동하는 것)</h3></blockquote>
+<h3 id="format-mv-option-원본파일-사본파일"><a href="#format-mv-option-원본파일-사본파일" class="headerlink" title="format: mv [option] 원본파일 사본파일"></a>format: <code>mv [option] 원본파일 사본파일</code></h3><h2 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h2><blockquote>
+<h3 id="디렉터리를-생성"><a href="#디렉터리를-생성" class="headerlink" title="디렉터리를 생성"></a>디렉터리를 생성</h3></blockquote>
+<h3 id="format-mkdir-option-디렉터리"><a href="#format-mkdir-option-디렉터리" class="headerlink" title="format: mkdir [option] 디렉터리"></a>format: <code>mkdir [option] 디렉터리</code></h3><h3 id="option-2"><a href="#option-2" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-p</strong> : 필요하다면 상위 디렉터리까지 만들어주는 옵션<ul>
+<li>mkdir /a</li>
+<li>mkdir /a/b</li>
+<li>mkdir /a/b/c/d  <strong>→ 오류! c 디렉터리가 없기 때문</strong></li>
+<li><strong>mkdir -p /a/b/c/d  → 상위 디렉터리인 c까지 만들어 줌</strong></li>
+</ul>
+</li>
+</ul>
+<h2 id="rmdir"><a href="#rmdir" class="headerlink" title="rmdir"></a>rmdir</h2><blockquote>
+<h3 id="디렉터리를-삭제"><a href="#디렉터리를-삭제" class="headerlink" title="디렉터리를 삭제"></a>디렉터리를 삭제</h3></blockquote>
+<h3 id="format-rmdir-option-디렉터리"><a href="#format-rmdir-option-디렉터리" class="headerlink" title="format: rmdir [option] 디렉터리"></a>format: <code>rmdir [option] 디렉터리</code></h3><ul>
+<li><strong>-p</strong> : 필요하다면 <strong>비어있는</strong> 상위 디렉터리까지 삭제해주는 옵션<ul>
+<li>비어있지 않으면 오류가 나기때문에 rmdir은 잘 사용하지 않는 명령어다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h2><blockquote>
+<h3 id="파일이나-디렉터리를-삭제"><a href="#파일이나-디렉터리를-삭제" class="headerlink" title="파일이나 디렉터리를 삭제"></a>파일이나 디렉터리를 삭제</h3></blockquote>
+<h3 id="format-rm-option-파일-디렉터리"><a href="#format-rm-option-파일-디렉터리" class="headerlink" title="format: rm [option] 파일|디렉터리"></a>format: <code>rm [option] 파일|디렉터리</code></h3><h3 id="option-3"><a href="#option-3" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-f</strong> : 물어보지 않고(강제)</li>
+<li><strong>-r</strong> : 디렉터리 삭제(써야지만 디렉터리 삭제 가능)</li>
+</ul>
+<h1 id="기본-명령어3"><a href="#기본-명령어3" class="headerlink" title="기본 명령어3"></a>기본 명령어3</h1><h2 id="ln"><a href="#ln" class="headerlink" title="ln"></a>ln</h2><blockquote>
+<h3 id="하드링크나-심볼릭링크-파일을-생성"><a href="#하드링크나-심볼릭링크-파일을-생성" class="headerlink" title="하드링크나 심볼릭링크 파일을 생성"></a>하드링크나 심볼릭링크 파일을 생성</h3></blockquote>
+<h3 id="format"><a href="#format" class="headerlink" title="format"></a>format</h3><p><img src="https://user-images.githubusercontent.com/79209568/113591375-c6c06a80-966e-11eb-816f-5046e48ad45e.png" alt="image"></p>
+<h3 id="option-4"><a href="#option-4" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-s</strong> : 심볼릭링크파일 생성(이 옵션을 사용하지않으면 하드링크 생성)<h4 id="하드링크-소프트링크-심볼릭링크-비교"><a href="#하드링크-소프트링크-심볼릭링크-비교" class="headerlink" title="하드링크, 소프트링크, 심볼릭링크 비교"></a>하드링크, 소프트링크, 심볼릭링크 비교</h4></li>
+<li><strong>하드링크</strong> : 원본이 두 개가 되는 것. 만약 test1이라는 파일의 하드링크 파일 test2를 생성했다고 치자. test1의 내용이 변경되면 test2의 내용도 변경된다.<ul>
+<li>ln test1 test2</li>
+</ul>
+</li>
+<li><strong>소프트링크</strong> : 사본이 생기는 것. test1의 소프트링크 파일 test2는 test1의 내용이 변경되어도 변경되지않는다.<ul>
+<li>cp test1 test2</li>
+</ul>
+</li>
+<li><strong>심볼릭 링크</strong> : 원본의 바로가기를 반드는 것. test1의 심볼릭링크 파일 test2는 test1이 삭제되면 사용하지 못한다.<ul>
+<li>ln -s test1 test2</li>
+</ul>
+</li>
+</ul>
+<h2 id="alias"><a href="#alias" class="headerlink" title="alias"></a>alias</h2><blockquote>
+<h3 id="복잡한-명령어와-옵션을-짧은-문자열로-바꿔줌"><a href="#복잡한-명령어와-옵션을-짧은-문자열로-바꿔줌" class="headerlink" title="복잡한 명령어와 옵션을 짧은 문자열로 바꿔줌"></a>복잡한 명령어와 옵션을 짧은 문자열로 바꿔줌</h3></blockquote>
+<h3 id="format1-alias-→-기본으로-등록된-alias들을-확인할-수-있음"><a href="#format1-alias-→-기본으로-등록된-alias들을-확인할-수-있음" class="headerlink" title="format1: alias → 기본으로 등록된 alias들을 확인할 수 있음"></a>format1: <code>alias</code> → 기본으로 등록된 alias들을 확인할 수 있음</h3><h3 id="format2-alias-문자-39-명령어-39"><a href="#format2-alias-문자-39-명령어-39" class="headerlink" title="format2: alias 문자=&#39;명령어&#39;"></a>format2: <code>alias 문자=&#39;명령어&#39;</code></h3><h3 id="format3-alias-문자-39-명령어-option-39"><a href="#format3-alias-문자-39-명령어-option-39" class="headerlink" title="format3: alias 문자=&#39;명령어 [option]&#39;"></a>format3: <code>alias 문자=&#39;명령어 [option]&#39;</code></h3><h3 id="format4-unalias-문자-→-alias-해제"><a href="#format4-unalias-문자-→-alias-해제" class="headerlink" title="format4: unalias 문자 → alias 해제"></a>format4: <code>unalias 문자</code> → alias 해제</h3><h2 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h2><blockquote>
+<h3 id="파일을-생성"><a href="#파일을-생성" class="headerlink" title="파일을 생성"></a>파일을 생성</h3><ul>
+<li>기존에 있던 파일을 touch로 다시 생성하면 나머지는 다 그대로고 생성 날짜만 현재로 바뀜</li>
+</ul>
+</blockquote>
+<h3 id="format-touch-option-파일"><a href="#format-touch-option-파일" class="headerlink" title="format: touch [option] 파일"></a>format: <code>touch [option] 파일</code></h3><h2 id="head"><a href="#head" class="headerlink" title="head"></a>head</h2><blockquote>
+<h3 id="파일의-내용을-출력"><a href="#파일의-내용을-출력" class="headerlink" title="파일의 내용을 출력"></a>파일의 내용을 출력</h3><ul>
+<li>기본 값으로 10줄</li>
+<li>출력되는 방향이 <strong>위에서 아래</strong></li>
+</ul>
+</blockquote>
+<h3 id="format-head-option-파일"><a href="#format-head-option-파일" class="headerlink" title="format: head [option] 파일"></a>format: <code>head [option] 파일</code></h3><h3 id="option-5"><a href="#option-5" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-n줄수</strong> : 지정한 줄 수 만큼 출력<ul>
+<li>head의 경우 n을 생략해도 오류가 나지 않고 사용가능</li>
+<li>ex) head /backup/test1 → 10줄 출력</li>
+<li>ex) head -n5 /backup/test1 → 5줄 출력</li>
+<li>ex) head -5 /backup/test1 → 5줄 출력</li>
+<li>ex) head -n5 /backup/test1 /backup/test2 → 두 파일 각각 5줄 출력</li>
+</ul>
+</li>
+</ul>
+<h2 id="tail"><a href="#tail" class="headerlink" title="tail"></a>tail</h2><blockquote>
+<h3 id="파일의-내용을-출력-1"><a href="#파일의-내용을-출력-1" class="headerlink" title="파일의 내용을 출력"></a>파일의 내용을 출력</h3><ul>
+<li>기본 값으로 10줄</li>
+<li>출력되는 방향이 <strong>아래에서 위</strong></li>
+</ul>
+</blockquote>
+<h3 id="format-tail-option-파일"><a href="#format-tail-option-파일" class="headerlink" title="format: tail [option] 파일"></a>format: <code>tail [option] 파일</code></h3><h3 id="option-6"><a href="#option-6" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-n줄수</strong> : 지정한 줄 수 만큼 출력<ul>
+<li>tail의 경우 n을 생략하면 오류남</li>
+</ul>
+</li>
+</ul>
+<h2 id="man"><a href="#man" class="headerlink" title="man"></a>man</h2><blockquote>
+<h3 id="모르는-명령어를-적으면-어떤-것인지-확인-가능"><a href="#모르는-명령어를-적으면-어떤-것인지-확인-가능" class="headerlink" title="모르는 명령어를 적으면 어떤 것인지 확인 가능"></a>모르는 명령어를 적으면 어떤 것인지 확인 가능</h3></blockquote>
+<h3 id="format-man-option-명령어"><a href="#format-man-option-명령어" class="headerlink" title="format: `man [option] 명령어"></a>format: `man [option] 명령어</h3><h3 id="option-7"><a href="#option-7" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>-a</strong> : 찾고자 하는 명령어의 검색된 매뉴얼 페이지를 모두 출력함</li>
+<li><strong>-h</strong> : 사용법을 출력함</li>
+<li>enter키 : 한 줄 씩넘기기</li>
+<li>space키 : 한 페이지씩 넘기기</li>
+</ul>
+<h2 id="–help"><a href="#–help" class="headerlink" title="–help"></a>–help</h2><blockquote>
+<h3 id="상세-도움말"><a href="#상세-도움말" class="headerlink" title="상세 도움말"></a>상세 도움말</h3></blockquote>
+<h3 id="format-명령어-help"><a href="#format-명령어-help" class="headerlink" title="format: 명령어 --help"></a>format: <code>명령어 --help</code></h3><h2 id="more"><a href="#more" class="headerlink" title="more"></a>more</h2><blockquote>
+<h3 id="파일을-화면단위로-출력"><a href="#파일을-화면단위로-출력" class="headerlink" title="파일을 화면단위로 출력"></a>파일을 화면단위로 출력</h3><ul>
+<li>파일의 마지막까지 보면 알아서 종료되어 프롬프트로 나옴</li>
+</ul>
+</blockquote>
+<h3 id="format-more-option-파일"><a href="#format-more-option-파일" class="headerlink" title="format: more [option] 파일"></a>format: <code>more [option] 파일</code></h3><h3 id="option-8"><a href="#option-8" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>enter키</strong> : 한 줄씩 아래로 이동</li>
+<li><strong>space키</strong> : 한 페이지씩 아래로 이동</li>
+<li><strong>q</strong> : 종료</li>
+</ul>
+<h2 id="less"><a href="#less" class="headerlink" title="less"></a>less</h2><blockquote>
+<h3 id="파일-내용을-페이지-단위로-출력"><a href="#파일-내용을-페이지-단위로-출력" class="headerlink" title="파일 내용을 페이지 단위로 출력"></a>파일 내용을 페이지 단위로 출력</h3><ul>
+<li>파일의 마지막까지 가도 알아서 종료되지 않고 q를 눌러서 종료해야 함</li>
+</ul>
+</blockquote>
+<h3 id="format-less-option-파일"><a href="#format-less-option-파일" class="headerlink" title="format: less [option] 파일"></a>format: <code>less [option] 파일</code></h3><h3 id="option-9"><a href="#option-9" class="headerlink" title="option"></a>option</h3><ul>
+<li><strong>enter키</strong> : 한 줄씩 아래로 이동</li>
+<li><strong>space키</strong> : 한 페이지씩 아래로 이동</li>
+<li><strong>k</strong> : 위로 이동</li>
+<li><strong>j</strong> : 아래로 이동</li>
+<li><strong>q</strong> : 종료</li>
+</ul>
+<h2 id="nl"><a href="#nl" class="headerlink" title="nl"></a>nl</h2><blockquote>
+<h3 id="파일의-각-줄에-번호를-부여"><a href="#파일의-각-줄에-번호를-부여" class="headerlink" title="파일의 각 줄에 번호를 부여"></a>파일의 각 줄에 번호를 부여</h3></blockquote>
+<h3 id="format-nl-option-파일"><a href="#format-nl-option-파일" class="headerlink" title="format: nl [option] 파일"></a>format: <code>nl [option] 파일</code></h3><h2 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h2><blockquote>
+<h3 id="파일의-내용을-출력-2"><a href="#파일의-내용을-출력-2" class="headerlink" title="파일의 내용을 출력"></a>파일의 내용을 출력</h3></blockquote>
+<h3 id="format-cat-option-파일"><a href="#format-cat-option-파일" class="headerlink" title="format: cat [option] 파일"></a>format: <code>cat [option] 파일</code></h3><h2 id="find"><a href="#find" class="headerlink" title="find"></a>find</h2><blockquote>
+<h3 id="주어진-조건을-검색하여-파일이나-디렉터리를-찾음"><a href="#주어진-조건을-검색하여-파일이나-디렉터리를-찾음" class="headerlink" title="주어진 조건을 검색하여 파일이나 디렉터리를 찾음"></a>주어진 조건을 검색하여 파일이나 디렉터리를 찾음</h3></blockquote>
+<h3 id="format1-find-경로-name-찾을이름-→-경로-하위에-찾을-이름을-검색"><a href="#format1-find-경로-name-찾을이름-→-경로-하위에-찾을-이름을-검색" class="headerlink" title="format1: find 경로 -name 찾을이름 → 경로 하위에 찾을 이름을 검색"></a>format1: <code>find 경로 -name 찾을이름</code> → 경로 하위에 찾을 이름을 검색</h3><h3 id="format2-find-경로-name-찾을이름-type-f-d-l-→-경로-하위에-찾을-이름의-타입을-지정하여-검색"><a href="#format2-find-경로-name-찾을이름-type-f-d-l-→-경로-하위에-찾을-이름의-타입을-지정하여-검색" class="headerlink" title="format2: find 경로 -name 찾을이름 -type f|d|l → 경로 하위에 찾을 이름의 타입을 지정하여 검색"></a>format2: <code>find 경로 -name 찾을이름 -type f|d|l</code> → 경로 하위에 찾을 이름의 타입을 지정하여 검색</h3><ul>
+<li>f는 파일, d는 디렉터리, l은 심볼릭링크<h3 id="format3-find-경로-newer-찾을이름-→-경로-하위에-찾을-이름-이후에-생성-또는-수정된-것들을-검색"><a href="#format3-find-경로-newer-찾을이름-→-경로-하위에-찾을-이름-이후에-생성-또는-수정된-것들을-검색" class="headerlink" title="format3: find 경로 -newer 찾을이름 → 경로 하위에 찾을 이름 이후에 생성 또는 수정된 것들을 검색"></a>format3: <code>find 경로 -newer 찾을이름</code> → 경로 하위에 찾을 이름 <strong>이후에</strong> 생성 또는 수정된 것들을 검색</h3><h3 id="format4-find-경로-name-찾을이름-exec-명령어-→-경로-하위에-찾을-이름을-검색하고-명령어-수행"><a href="#format4-find-경로-name-찾을이름-exec-명령어-→-경로-하위에-찾을-이름을-검색하고-명령어-수행" class="headerlink" title="format4: find 경로 -name 찾을이름 -exec 명령어 {}\; → 경로 하위에 찾을 이름을 검색하고 명령어 수행"></a>format4: <code>find 경로 -name 찾을이름 -exec 명령어 &#123;&#125;\;</code> → 경로 하위에 찾을 이름을 검색하고 명령어 수행</h3></li>
+<li>{}에 명령어를 대입시켜서 \엔터하고 ;끝냄</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/command/" rel="tag"># command</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/" rel="prev" title="File System of Linux and Hierarchical Structure">
+                  <i class="fa fa-chevron-left"></i> File System of Linux and Hierarchical Structure
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/06/Shut-down-and-Reboot/" rel="next" title="Shut down and Reboot">
+                  Shut down and Reboot <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CLARY</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -169,20 +169,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -219,6 +219,697 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/06/VI/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/06/VI/" class="post-title-link" itemprop="url">VI</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-06 02:24:19" itemprop="dateCreated datePublished" datetime="2021-04-06T02:24:19+09:00">2021-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:25:30" itemprop="dateModified" datetime="2021-04-07T02:25:30+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="VI"><a href="#VI" class="headerlink" title="VI"></a>VI</h1><h2 id="vi-Visual-Editor-란"><a href="#vi-Visual-Editor-란" class="headerlink" title="vi(Visual Editor)란?"></a>vi(Visual Editor)란?</h2><blockquote>
+<h3 id="유닉스-환경에서부터-많이-사용되었던-문서-편집기"><a href="#유닉스-환경에서부터-많이-사용되었던-문서-편집기" class="headerlink" title="유닉스 환경에서부터 많이 사용되었던 문서 편집기"></a>유닉스 환경에서부터 많이 사용되었던 문서 편집기</h3></blockquote>
+<ul>
+<li>한 줄 씩 편집하는 줄 단위 편집기가 아니라 한 <strong>화면</strong>을 편집하는 비주얼 에디터라는 뜻에서 유래</li>
+<li>간결하면서도 강력한 기능을 보유</li>
+<li>GUI 환경이 아닌 CLI 환경에서 사용</li>
+</ul>
+<h2 id="format-vi-파일명"><a href="#format-vi-파일명" class="headerlink" title="format: vi 파일명"></a>format: <code>vi 파일명</code></h2><h2 id="명령-모드"><a href="#명령-모드" class="headerlink" title="명령 모드"></a>명령 모드</h2><ul>
+<li>enter키를 누를 필요없이 하나하나의 키를 누르면 <strong>바로 실행</strong></li>
+<li>커서 이동, 복사, 붙여넣기, 삭제 등의 기능을 할 수 있다(마우스 X, 방향키 O)<h3 id="커서-이동"><a href="#커서-이동" class="headerlink" title="커서 이동"></a>커서 이동</h3></li>
+<li><code>h</code> : 왼쪽</li>
+<li><code>j</code> : 아래쪽</li>
+<li><code>k</code> : 위쪽</li>
+<li><code>l</code> : 오른쪽<h3 id="단어-단위로-이동"><a href="#단어-단위로-이동" class="headerlink" title="단어 단위로 이동"></a>단어 단위로 이동</h3></li>
+<li><code>w, W</code> : 다음 단어의 처음</li>
+<li><code>b, B</code> : 이전 단어의 처음</li>
+<li><code>e, E</code> : 다음 단어의 마지막</li>
+<li>대문자의 경우 특수문자를 거치지 않고 이동함<br>ex) hello-world의 경우, <code>b</code>는 w, -, h를 거쳐서 이동하고 <code>B</code>는 바로 h로 이동한다.<h3 id="행-단위로-이동"><a href="#행-단위로-이동" class="headerlink" title="행 단위로 이동"></a>행 단위로 이동</h3></li>
+<li><code>0(숫자)</code> : 커서가 있는 행의 맨 처음(home키와 같은 역할)</li>
+<li><code>$</code> : 커서가 있는 행의 맨 마지막 (end키와 같은 역할)<h3 id="문서-단위로-이동"><a href="#문서-단위로-이동" class="headerlink" title="문서 단위로 이동"></a>문서 단위로 이동</h3></li>
+<li><code>gg</code> : 문서 전체에서 맨 처음</li>
+<li><code>G</code> : 문서 전체에서 맨 마지막<h3 id="화면-창-단위로-이동"><a href="#화면-창-단위로-이동" class="headerlink" title="화면(창) 단위로 이동"></a>화면(창) 단위로 이동</h3></li>
+<li><code>H</code> : 커서가 현재 화면 크기에서 처음</li>
+<li><code>M</code> : 커서가 현재 화면 크기에서 중간</li>
+<li><code>L</code> : 커서가 현재 화면 크기에서 마지막<h3 id="그-외"><a href="#그-외" class="headerlink" title="그 외"></a>그 외</h3></li>
+<li><code>x</code> : 현재 커서에 있는 문자를 삭제</li>
+<li><code>X</code> : 현재 커서 이전 문자를 삭제</li>
+<li><code>dd</code> : 한 줄 삭제</li>
+<li><code>줄수+dd</code> : 지정한 여러 줄을 삭제</li>
+<li><code>yy</code> : 한 줄 복사</li>
+<li><code>줄수+yy</code> : 지정한 여러 줄을 복사</li>
+<li><code>p(소문자)</code> : 현재 커서 아래에 붙여넣기</li>
+<li><code>P(대문자)</code> : 현재 커서 위에 붙여넣기</li>
+<li><code>u</code> : 되돌리기</li>
+<li><code>ctrl+r</code> : 되살리기</li>
+<li><code>R</code> : 기존 내용을 변</li>
+</ul>
+<h2 id="입력-모드"><a href="#입력-모드" class="headerlink" title="입력 모드"></a>입력 모드</h2><ul>
+<li>말 그대로 입력하는 문자가 그대로 문서에 입력 됨. 타이핑 작업을 하는 모드</li>
+<li>하단에 – INSEST –가 표시 됨</li>
+</ul>
+<h2 id="실행-모드"><a href="#실행-모드" class="headerlink" title="실행 모드"></a>실행 모드</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/06/VI/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/06/Shut-down-and-Reboot/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/06/Shut-down-and-Reboot/" class="post-title-link" itemprop="url">Shut down and Reboot</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-06 02:22:58" itemprop="dateCreated datePublished" datetime="2021-04-06T02:22:58+09:00">2021-04-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:23:56" itemprop="dateModified" datetime="2021-04-07T02:23:56+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="시스템-종료"><a href="#시스템-종료" class="headerlink" title="시스템 종료"></a>시스템 종료</h1><ul>
+<li><code>Shutdown -h now</code></li>
+<li><code>poweroff</code></li>
+<li><code>halt</code></li>
+<li><code>init 0</code></li>
+</ul>
+<h1 id="시스템-재부팅"><a href="#시스템-재부팅" class="headerlink" title="시스템 재부팅"></a>시스템 재부팅</h1><ul>
+<li><code>shutdown -r now</code></li>
+<li><code>reboot</code></li>
+<li><code>init 6</code></li>
+</ul>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/06/Shut-down-and-Reboot/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/05/Commands/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/05/Commands/" class="post-title-link" itemprop="url">Commands</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-05 02:21:40" itemprop="dateCreated datePublished" datetime="2021-04-05T02:21:40+09:00">2021-04-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:22:36" itemprop="dateModified" datetime="2021-04-07T02:22:36+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="명령어-구조"><a href="#명령어-구조" class="headerlink" title="명령어 구조"></a>명령어 구조</h1><ol>
+<li><strong>명령어</strong></li>
+<li><strong>명령어 directory(작업대상) 또는 file</strong><ul>
+<li>한 칸 이상 꼭 띄어쓰기!</li>
+<li>ex) ls /etc/passwd</li>
+</ul>
+</li>
+<li><strong>명령어 [option]</strong><ul>
+<li>명령어 + 옵션의 경우 한 칸 띄고 ‘-‘를 써준다.</li>
+<li>ex) ls -l</li>
+</ul>
+</li>
+<li><strong>명령어 [option] directory 또는 file</strong><ul>
+<li>ex) ls -l /home</li>
+<li>옵션이 맨 뒤로 가도 작동한다. (ls /home -l)</li>
+</ul>
+</li>
+<li><strong>명령어 [option] [sub option]</strong><ul>
+<li>ex) ls -l -d : 옵션끼리도 띄어서 쓴다</li>
+<li>ex) ls -ld : 하나의 ‘-‘에 옵션 여러개를 쓸 수도 있다.(하지만 순서가 바뀌면 안되는 옵션도 있으니 주의해야한다)</li>
+</ul>
+</li>
+<li><strong>명령어 [option] [sub option] directory 또는 file</strong></li>
+</ol>
+<h1 id="기본-명령어1"><a href="#기본-명령어1" class="headerlink" title="기본 명령어1"></a>기본 명령어1</h1><h2 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h2><blockquote>
+<h3 id="현재-디렉터리의-경로-확인"><a href="#현재-디렉터리의-경로-확인" class="headerlink" title="현재 디렉터리의 경로 확인"></a>현재 디렉터리의 경로 확인</h3></blockquote>
+<h3 id="format-pwd"><a href="#format-pwd" class="headerlink" title="format : pwd"></a>format : <code>pwd</code></h3><h2 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h2><blockquote>
+<h3 id="디렉터리를-변경하고자-할-때"><a href="#디렉터리를-변경하고자-할-때" class="headerlink" title="디렉터리를 변경하고자 할 때"></a>디렉터리를 변경하고자 할 때</h3></blockquote>
+<h3 id="format1-cd-directory"><a href="#format1-cd-directory" class="headerlink" title="format1 : cd directory"></a>format1 : <code>cd directory</code></h3><p>(file은 안됨)</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/05/Commands/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/" class="post-title-link" itemprop="url">File System of Linux and Hierarchical Structure</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-05 02:20:18" itemprop="dateCreated datePublished" datetime="2021-04-05T02:20:18+09:00">2021-04-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:21:14" itemprop="dateModified" datetime="2021-04-07T02:21:14+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="리눅스의-파일-시스템-및-계층적-구조"><a href="#리눅스의-파일-시스템-및-계층적-구조" class="headerlink" title="리눅스의 파일 시스템 및 계층적 구조"></a>리눅스의 파일 시스템 및 계층적 구조</h1><h2 id="파일-시스템-file-system-이란"><a href="#파일-시스템-file-system-이란" class="headerlink" title="파일 시스템(file system)이란?"></a>파일 시스템(file system)이란?</h2><ul>
+<li>컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제</li>
+</ul>
+<h2 id="계층적-구조"><a href="#계층적-구조" class="headerlink" title="계층적 구조"></a>계층적 구조</h2><p><img src="https://user-images.githubusercontent.com/79209568/113513239-a37cb900-95a3-11eb-990e-e8da9b74a57f.png" alt="image"></p>
+<h3 id><a href="#" class="headerlink" title="/"></a>/</h3><ul>
+<li><strong>최상위 루트 디렉터리 또는 최상위 디렉터리</strong></li>
+<li>리눅스의 모든 디렉터리의 시작점(꼭대기)</li>
+</ul>
+<h3 id="bin-바로가기파일-→-usr-bin-원본"><a href="#bin-바로가기파일-→-usr-bin-원본" class="headerlink" title="/bin(바로가기파일) → /usr/bin(원본)"></a>/bin(바로가기파일) → /usr/bin(원본)</h3><ul>
+<li><strong>기본 명령어</strong>가 들어있는 디렉터리</li>
+<li>일반 사용자 계정과 관리자가 사용</li>
+</ul>
+<h3 id="boot"><a href="#boot" class="headerlink" title="/boot"></a>/boot</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/04/Installing-Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/04/Installing-Linux/" class="post-title-link" itemprop="url">Installing Linux</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-04 02:18:30" itemprop="dateCreated datePublished" datetime="2021-04-04T02:18:30+09:00">2021-04-04</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:19:43" itemprop="dateModified" datetime="2021-04-07T02:19:43+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="운영체제-환경"><a href="#운영체제-환경" class="headerlink" title="운영체제 환경"></a>운영체제 환경</h1><h2 id="single-Booting"><a href="#single-Booting" class="headerlink" title="single Booting"></a>single Booting</h2><ul>
+<li>컴퓨터 위에서 1개의 운영체제를 설치하는 행위<blockquote>
+<p><strong>1 컴퓨터 1 운영체제</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Multi-Booting"><a href="#Multi-Booting" class="headerlink" title="Multi Booting"></a>Multi Booting</h2><ul>
+<li>컴퓨터 위에서 2개 이상의 여러 운영체제를 설치하는 행위<blockquote>
+<p><strong>1 컴퓨터 N 운영체제</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Virtual-Booting"><a href="#Virtual-Booting" class="headerlink" title="Virtual Booting"></a>Virtual Booting</h2><ul>
+<li>컴퓨터 위에서 1개의 운영체제를 설치하고 <strong>가상머신</strong>을설치하는 행위</li>
+<li>가상머신의 종류<ul>
+<li>VMware Workstation PRO : 상용(라이선스 구입필요)</li>
+<li>VMware Player VirtualBox : 무료<blockquote>
+<p><strong>1 컴퓨터 1 운영체제(가상머신 내에 N 운영체제)</strong></p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="리눅스-설치"><a href="#리눅스-설치" class="headerlink" title="리눅스 설치"></a>리눅스 설치</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://www.vmware.com/products/workstation-player/workstation-player-evaluation.html">VMware workstation player Download</a></li>
+<li><a target="_blank" rel="noopener" href="http://data.nicehosting.co.kr/os/CentOS/7/isos/x86_64/">CentOS 7 Download</a><ul>
+<li>Everthing iso 10GB짜리로 다운로드 받아준다.<br><img src="https://user-images.githubusercontent.com/79209568/113512802-441da980-95a1-11eb-8392-c65b0277cc1d.png" alt="image"></li>
+<li>CD/DVD에 연결해줄 파일이다.</li>
+</ul>
+</li>
+</ul>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/04/Installing-Linux/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/02/Concepts-of-Linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/04/02/Concepts-of-Linux/" class="post-title-link" itemprop="url">Concepts of Linux</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-02 02:15:47" itemprop="dateCreated datePublished" datetime="2021-04-02T02:15:47+09:00">2021-04-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:17:28" itemprop="dateModified" datetime="2021-04-07T02:17:28+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="리눅스란"><a href="#리눅스란" class="headerlink" title="리눅스란?"></a>리눅스란?</h1><blockquote>
+<p>리눅스 토르발스가 커뮤니티 주체로 개발한 운영체제(또는 커널)</p>
+<ul>
+<li>유닉스 계열인 미닉스를 사용하여 마음에 들지 않을 때 마다 커널에 여러가지 기능을 추가함</li>
+</ul>
+</blockquote>
+<h2 id="리눅스-커널과-GNU-유틸리티가-결합"><a href="#리눅스-커널과-GNU-유틸리티가-결합" class="headerlink" title="리눅스 커널과 GNU 유틸리티가 결합"></a>리눅스 커널과 GNU 유틸리티가 결합</h2><ul>
+<li>GNU/Linux라고 불리거나 Linux라고 불림</li>
+<li>HP, IBM 등의 대기업들이 리눅스 개발에 지원<blockquote>
+<p>GNU선언: “GNU는 유닉스가 아니다” 란 의미. 리눅스는 오픈 소스.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="리눅스의-종류"><a href="#리눅스의-종류" class="headerlink" title="리눅스의 종류"></a>리눅스의 종류</h2><ul>
+<li>수 백 종류의 변종들이 있으며 모두 리눅스라고 불림. (이유 : 소스가 공개되었기 때문)</li>
+<li>오픈소스지만 커널은 변하지 않으면서 여러 계열의 회사가 자신들의 기술을 추가하는 것.</li>
+<li>같은 역할을 하더라고 <strong>편리성, 속도, 확장성, 가벼움</strong> 등을 지향하는 여러 선택 가능</li>
+<li>대표적인 리눅스<ul>
+<li>Slackware의 SUSE</li>
+<li>Debian의 Debian, Ubuntu</li>
+<li>Redhat의 Fedora, CentOS</li>
+</ul>
+</li>
+</ul>
+<h2 id="리눅스에-대한-추가적인-정보"><a href="#리눅스에-대한-추가적인-정보" class="headerlink" title="리눅스에 대한 추가적인 정보"></a>리눅스에 대한 추가적인 정보</h2><ul>
+<li>PC용 운영체제 뿐 아니라 인터넷 공유기나 PDA, 휴대폰, 냉장고, TV, 드론 등 여러 곳에서 사용됨</li>
+<li>GPL(General Public License)에 의해 배포됨<ul>
+<li>GPL : 소스 공개 및 자유로운 이용을 원칙으로 한다</li>
+</ul>
+</li>
+<li>언어로는 C, 어셈블리어를 사용</li>
+<li>국내 자격증인 리눅스 마스터와 국제 자격증인 LPIC이 있음</li>
+</ul>
+<h1 id="리눅스의-특징"><a href="#리눅스의-특징" class="headerlink" title="리눅스의 특징"></a>리눅스의 특징</h1><ul>
+<li>다중 사용자(Multi-User) : 여러 사람들이 원격 서비스를 사용해서 동시에 한 서버에 접속을 할 수 있음</li>
+<li>다중 작업(Multi-Tasking) : 여러 작업을 동시에 할 수 있음</li>
+<li>CLI(Command Line Interface)환경, TUI(Text User Interface), Console 환경에서 작업</li>
+<li>Client 용도보다는 Server용도로 사용합<ul>
+<li>매우 안정적인 운영체제</li>
+<li>Windows OS 처럼 고사양을 필요로 하지 않음</li>
+<li>Unix와 호환이 되나 Windows OS와 호환이 미흡</li>
+<li>강력한 네트워크망을 구축</li>
+<li>다양한 응용 프로그램들을 제공함</li>
+<li>확장성, 이식성이 뛰어남(새로운 장치는 바로 사용 불가능)</li>
+</ul>
+</li>
+</ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/04/02/Concepts-of-Linux/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -641,546 +1332,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Stack/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CLARY">
-      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="채룽 블로그">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/10/Stack/" class="post-title-link" itemprop="url">Stack</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-10 02:01:36" itemprop="dateCreated datePublished" datetime="2021-03-10T02:01:36+09:00">2021-03-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-07 02:02:56" itemprop="dateModified" datetime="2021-04-07T02:02:56+09:00">2021-04-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="스택-Stack"><a href="#스택-Stack" class="headerlink" title="스택 (Stack)"></a>스택 (Stack)</h1><ul>
-<li>데이터를 제한적으로 접근할 수 있는 구조</li>
-</ul>
-<ul>
-<li>한 쪽 끝에서만 자료를 넣거나 뺄 수 있는 구조</li>
-</ul>
-<ul>
-<li><strong>가장 나중에 쌓은 데이터를 가장 먼저 뺄 수 있는 구조</strong></li>
-</ul>
-<ul>
-<li>큐 : FIFO 정책</li>
-<li>스택 : LIFO 정책</li>
-</ul>
-<h2 id="스택-구조"><a href="#스택-구조" class="headerlink" title="스택 구조"></a>스택 구조</h2><ul>
-<li>스택은 LIFO(Last In, Fisrt Out) 또는 FILO(First In, Last Out) 데이터 관리 방식을 따름<ul>
-<li>LIFO: 마지막에 넣은 데이터를 가장 먼저 추출하는 데이터 관리 정책</li>
-<li>FILO: 처음에 넣은 데이터를 가장 마지막에 추출하는 데이터 관리 정책</li>
-<li>visualgo 에서 시연해보기 (<a target="_blank" rel="noopener" href="https://visualgo.net/en/list">https://visualgo.net/en/list</a>)</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li>대표적인 스택의 활용<ul>
-<li>컴퓨터 내부의 프로세스 구조의 함수 동작 방식</li>
-</ul>
-</li>
-</ul>
-<h2 id="스택의-용어"><a href="#스택의-용어" class="headerlink" title="스택의 용어"></a>스택의 용어</h2><ul>
-<li>push(): 데이터를 스택에 넣기</li>
-<li>pop(): 데이터를 스택에서 꺼내기</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/10/Stack/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Queue/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CLARY">
-      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="채룽 블로그">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/10/Queue/" class="post-title-link" itemprop="url">Queue</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-10 01:59:37" itemprop="dateCreated datePublished" datetime="2021-03-10T01:59:37+09:00">2021-03-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-07 02:01:06" itemprop="dateModified" datetime="2021-04-07T02:01:06+09:00">2021-04-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="큐-Queue"><a href="#큐-Queue" class="headerlink" title="큐(Queue)"></a>큐(Queue)</h1><h2 id="큐-구조"><a href="#큐-구조" class="headerlink" title="큐 구조"></a>큐 구조</h2><ul>
-<li>줄을 서는 행위와 유사</li>
-<li>가장 먼저 넣은 데이터를 가장 먼저 꺼내는 구조</li>
-<li>음식점에서 가장 먼저 줄을 선 사람이 제일 먼저 음식점에 입장하는 것과 동일</li>
-<li><strong>FIFO (First In First Out)</strong> 또는 LILO (Last In Last Out)으로 스택과 꺼내는 순서가 반대<img src="https://www.fun-coding.org/00_Images/queue.png"></li>
-</ul>
-<ul>
-<li>출처: <a target="_blank" rel="noopener" href="http://www.stoimen.com/blog/2012/06/05/computer-algorithms-stack-and-queue-data-structure/">http://www.stoimen.com/blog/2012/06/05/computer-algorithms-stack-and-queue-data-structure/</a></li>
-</ul>
-<h2 id="큐-용어"><a href="#큐-용어" class="headerlink" title="큐 용어"></a>큐 용어</h2><ul>
-<li>Enqueue : 큐에 데이터를 넣는 기능</li>
-<li>Dequeue : 큐에서 데이터를 꺼내는 기능</li>
-<li>visualgo 에서 시연해보며 이해하기 (<a target="_blank" rel="noopener" href="https://visualgo.net/en/list">https://visualgo.net/en/list</a>)</li>
-</ul>
-<h2 id="Python-queue-라이브러리-활용해서-큐-자료구조-사용하기"><a href="#Python-queue-라이브러리-활용해서-큐-자료구조-사용하기" class="headerlink" title="Python queue 라이브러리 활용해서 큐 자료구조 사용하기"></a>Python queue 라이브러리 활용해서 큐 자료구조 사용하기</h2><ul>
-<li><strong>queue 라이브러리에는 다양한 큐 구조로 Queue(), LifoQueue(), PriorityQueue() 제공</strong></li>
-<li>프로그램을 작성할 때 프로그램에 따라 적합한 자료 구조를 사용</li>
-<li>Queue(): 가장 일반적인 큐 자료 구조</li>
-<li>LifoQueue(): 나중에 입력된 데이터가 먼저 출력되는 구조 (스택 구조라고 보면 됨)</li>
-<li>PriorityQueue(): 데이터마다 우선순위를 넣어서, 우선순위가 높은 순으로 데이터 출력</li>
-</ul>
-<h3 id="Queue-로-큐-만들기-일반적인-큐-FIFO"><a href="#Queue-로-큐-만들기-일반적인-큐-FIFO" class="headerlink" title="Queue()로 큐 만들기 (일반적인 큐,FIFO)"></a>Queue()로 큐 만들기 (일반적인 큐,FIFO)</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> queue</span><br><span class="line"></span><br><span class="line">data_queue = queue.Queue()  <span class="comment"># 큐 생성</span></span><br><span class="line">data_queue.put(<span class="string">&quot;hello&quot;</span>)  <span class="comment"># &#x27;hello&#x27; 데이터 넣음</span></span><br><span class="line">data_queue.put(<span class="number">1</span>)  <span class="comment"># 1 데이터 넣음</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/10/Queue/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/10/Linked-List/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CLARY">
-      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="채룽 블로그">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/10/Linked-List/" class="post-title-link" itemprop="url">Linked List</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-10 01:54:58" itemprop="dateCreated datePublished" datetime="2021-03-10T01:54:58+09:00">2021-03-10</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-07 01:56:55" itemprop="dateModified" datetime="2021-04-07T01:56:55+09:00">2021-04-07</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Data-Structure/" itemprop="url" rel="index"><span itemprop="name">Data Structure</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="링크드-리스트-Linked-List"><a href="#링크드-리스트-Linked-List" class="headerlink" title="링크드 리스트 (Linked List)"></a>링크드 리스트 (Linked List)</h1><h2 id="링크드-리스트-Linked-List-구조"><a href="#링크드-리스트-Linked-List-구조" class="headerlink" title="링크드 리스트(Linked List) 구조"></a>링크드 리스트(Linked List) 구조</h2><ul>
-<li><strong>연결 리스트</strong>라고도함</li>
-<li>배열은 순차적으로 연결된 공간에 데이터를 나열하는 데이터 구조</li>
-<li>링크드 리스트는 떨어진 곳에 존재하는 데이터를 화살표로 연결해서 관리하는 데이터 구조</li>
-<li>본래 C언어에서는 주요한 데이터 구조이지만, <strong>파이썬은 리스트 타입이 링크드 리스트의 기능을 모두 지원</strong></li>
-<li><span style="color:blue">코테에 간단하게 구현하라는 식으로 나올 수 있으니 구현 코드를 잘 익혀두자!</span></li>
-</ul>
-<h2 id="용어"><a href="#용어" class="headerlink" title="용어"></a>용어</h2><ul>
-<li>노드(Node) : 데이터 저장 단위 (데이터값, 포인터)로 구성</li>
-<li>포인터(Pointer) : 각 노드 안에서, 다음이나 이전의 노드와의 연결 정보를 가지고 있는 공간</li>
-<li>일반적인 링크드 리스트 형태<img src="https://www.fun-coding.org/00_Images/linkedlist.png"></li>
-</ul>
-<h2 id="링크드-리스트의-장단점-전통적인-C언어에서의-배열과-링크드-리스트"><a href="#링크드-리스트의-장단점-전통적인-C언어에서의-배열과-링크드-리스트" class="headerlink" title="링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)"></a>링크드 리스트의 장단점 (전통적인 C언어에서의 배열과 링크드 리스트)</h2><ul>
-<li>장점<ul>
-<li>미리 데이터 공간을 할당하지 않아도 됨 (배열은 미리 데이터공간을 할당해야함)</li>
-</ul>
-</li>
-<li>단점<ul>
-<li>저장공간 효율이 높지 않음 -&gt; 연결을 위한 별도 데이터 공간이 필요하기 때문에</li>
-<li>접근 속도가 느림 -&gt; 연결 정보를 찾는 시간이 필요하기 때문</li>
-<li>중간 데이터 삭제 시, 앞뒤 데이터의 연결을 재구성해야하는 부가적인 작업</li>
-</ul>
-</li>
-</ul>
-<h2 id="간단한-링크드-리스트-예"><a href="#간단한-링크드-리스트-예" class="headerlink" title="간단한 링크드 리스트 예"></a>간단한 링크드 리스트 예</h2><h3 id="Node-구현"><a href="#Node-구현" class="headerlink" title="Node 구현"></a>Node 구현</h3><ul>
-<li>보통 Python에서 링크드 리스트 구현 시, 클래스를 활용함</li>
-<li>-&gt; 클래스를 사용해서 구현하는 이유 : 데이터 두 가지(데이터, 주소)로 이루어져 있는 노드를 저장할 수 있는 구조를 만들려면 클래스가 수월</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/10/Linked-List/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/04/TIL-210304-Git-Branch/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CLARY">
-      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="채룽 블로그">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/04/TIL-210304-Git-Branch/" class="post-title-link" itemprop="url">Git Branch</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-04 21:20:20" itemprop="dateCreated datePublished" datetime="2021-03-04T21:20:20+09:00">2021-03-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 18:31:32" itemprop="dateModified" datetime="2021-04-06T18:31:32+09:00">2021-04-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="Branch"><a href="#Branch" class="headerlink" title="Branch"></a>Branch</h1><p>분기점을 생성하여 독립적으로 코드를 변경할 수 있도록 도와주는 모델</p>
-<p><img src="https://user-images.githubusercontent.com/79209568/109974307-c285f200-7d3c-11eb-8695-384b239dcee6.png" alt="image"></p>
-<h2 id="Branch-명령어"><a href="#Branch-명령어" class="headerlink" title="Branch 명령어"></a>Branch 명령어</h2><h3 id="Show-Branch"><a href="#Show-Branch" class="headerlink" title="Show Branch"></a>Show Branch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 가능한 local Branch 확인--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 가능한 remote Branch 확인--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -r</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 가능한 모든 Branch 확인--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch -a</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="Create-Branch"><a href="#Create-Branch" class="headerlink" title="Create Branch"></a>Create Branch</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Branch 생성--&gt;</span><br><span class="line"><span class="meta">$</span><span class="bash"> git branch &#123;branch name&#125;</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/04/TIL-210304-Git-Branch/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/03/03/TIL-210303-Git-Start/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="CLARY">
-      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="채룽 블로그">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/03/03/TIL-210303-Git-Start/" class="post-title-link" itemprop="url">Git Start</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-03-03 19:22:48" itemprop="dateCreated datePublished" datetime="2021-03-03T19:22:48+09:00">2021-03-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-04-06 18:31:06" itemprop="dateModified" datetime="2021-04-06T18:31:06+09:00">2021-04-06</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Git/" itemprop="url" rel="index"><span itemprop="name">Git</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="git-start"><a href="#git-start" class="headerlink" title="git start"></a>git start</h1><h2 id="Done"><a href="#Done" class="headerlink" title="Done"></a><font style:color="red">Done</font></h2><h3 id="shell-command"><a href="#shell-command" class="headerlink" title="shell command"></a>shell command</h3><h4 id="리스트-출력"><a href="#리스트-출력" class="headerlink" title="리스트 출력"></a>리스트 출력</h4><ul>
-<li><strong>ls</strong> : 전체 리스트</li>
-<li><strong>ls -a</strong> : 숨긴 파일까지 출력</li>
-<li><strong>ls -l</strong> : 자세히</li>
-<li><strong>ls -al</strong> : 합쳐서 사용 가능<h4 id="디렉토리"><a href="#디렉토리" class="headerlink" title="디렉토리"></a>디렉토리</h4></li>
-<li><strong>mkdir {디렉토리명}</strong> : 생성</li>
-<li><strong>rm {디렉토리명}</strong> : (디렉토리 내에 파일 없을 시 가능)삭제</li>
-<li>**rm -r {디렉토리명} **: (디렉토리 내에 파일까지) 삭제</li>
-</ul>
-<h4 id="파일"><a href="#파일" class="headerlink" title="파일"></a>파일</h4><ul>
-<li><strong>touch {파일명}</strong> : 생성</li>
-<li><strong>mv {파일명} { 디렉토리명}</strong> : 디렉토리로 파일 옮기기</li>
-<li><strong>mv {파일명} {새로운 파일명}</strong> : 파일 명 변경(새로운 파일 명에 디렉토리 추가 시 그 디렉토리에 생성됨) </li>
-<li><strong>cp {파일명} [{디렉토리}]</strong> : 복사</li>
-<li><strong>rm {파일명}</strong> : 삭제</li>
-<li><strong>cat {파일명}</strong> : 내용 확인</li>
-</ul>
-<h3 id="vim-command"><a href="#vim-command" class="headerlink" title="vim command"></a>vim command</h3><h4 id="vim-열기"><a href="#vim-열기" class="headerlink" title="vim 열기"></a>vim 열기</h4><ul>
-<li><strong>vi {파일명}</strong></li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/03/03/TIL-210303-Git-Start/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 <script>

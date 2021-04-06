@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"clary0122.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}};
+  </script>
+<meta name="description" content="리눅스의 파일 시스템 및 계층적 구조파일 시스템(file system)이란? 컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제  계층적 구조 &#x2F; 최상위 루트 디렉터리 또는 최상위 디렉터리 리눅스의 모든 디렉터리의 시작점(꼭대기)  &#x2F;bin(바로가기파일) → &#x2F;usr&#x2F;bin(원본) 기본 명령어가 들어있는 디렉터리 일반 사용자">
+<meta property="og:type" content="article">
+<meta property="og:title" content="File System of Linux and Hierarchical Structure">
+<meta property="og:url" content="https://clary0122.github.io/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/index.html">
+<meta property="og:site_name" content="채룽 블로그">
+<meta property="og:description" content="리눅스의 파일 시스템 및 계층적 구조파일 시스템(file system)이란? 컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제  계층적 구조 &#x2F; 최상위 루트 디렉터리 또는 최상위 디렉터리 리눅스의 모든 디렉터리의 시작점(꼭대기)  &#x2F;bin(바로가기파일) → &#x2F;usr&#x2F;bin(원본) 기본 명령어가 들어있는 디렉터리 일반 사용자">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://user-images.githubusercontent.com/79209568/113513239-a37cb900-95a3-11eb-990e-e8da9b74a57f.png">
+<meta property="article:published_time" content="2021-04-04T17:20:18.000Z">
+<meta property="article:modified_time" content="2021-04-06T17:21:14.994Z">
+<meta property="article:author" content="CLARY">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="file system">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/79209568/113513239-a37cb900-95a3-11eb-990e-e8da9b74a57f.png">
+
+
+<link rel="canonical" href="https://clary0122.github.io/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+<title>File System of Linux and Hierarchical Structure | 채룽 블로그</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">채룽 블로그</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%EB%A6%AC%EB%88%85%EC%8A%A4%EC%9D%98-%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-%EB%B0%8F-%EA%B3%84%EC%B8%B5%EC%A0%81-%EA%B5%AC%EC%A1%B0"><span class="nav-number">1.</span> <span class="nav-text">리눅스의 파일 시스템 및 계층적 구조</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-file-system-%EC%9D%B4%EB%9E%80"><span class="nav-number">1.1.</span> <span class="nav-text">파일 시스템(file system)이란?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%EA%B3%84%EC%B8%B5%EC%A0%81-%EA%B5%AC%EC%A1%B0"><span class="nav-number">1.2.</span> <span class="nav-text">계층적 구조</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link"><span class="nav-number">1.2.1.</span> <span class="nav-text">&#x2F;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bin-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0%ED%8C%8C%EC%9D%BC-%E2%86%92-usr-bin-%EC%9B%90%EB%B3%B8"><span class="nav-number">1.2.2.</span> <span class="nav-text">&#x2F;bin(바로가기파일) → &#x2F;usr&#x2F;bin(원본)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#boot"><span class="nav-number">1.2.3.</span> <span class="nav-text">&#x2F;boot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dev"><span class="nav-number">1.2.4.</span> <span class="nav-text">&#x2F;dev</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#etc"><span class="nav-number">1.2.5.</span> <span class="nav-text">&#x2F;etc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#home"><span class="nav-number">1.2.6.</span> <span class="nav-text">&#x2F;home</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lib-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0%ED%8C%8C%EC%9D%BC-%E2%86%92-usr-lib-%EC%9B%90%EB%B3%B8"><span class="nav-number">1.2.7.</span> <span class="nav-text">&#x2F;lib(바로가기파일) → &#x2F;usr&#x2F;lib(원본)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#media"><span class="nav-number">1.2.8.</span> <span class="nav-text">&#x2F;media</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mnt"><span class="nav-number">1.2.9.</span> <span class="nav-text">&#x2F;mnt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#opt"><span class="nav-number">1.2.10.</span> <span class="nav-text">&#x2F;opt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proc"><span class="nav-number">1.2.11.</span> <span class="nav-text">&#x2F;proc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#root"><span class="nav-number">1.2.12.</span> <span class="nav-text">&#x2F;root</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#run"><span class="nav-number">1.2.13.</span> <span class="nav-text">&#x2F;run</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sbin-%EB%B0%94%EB%A1%9C%EA%B0%80%EA%B8%B0%ED%8C%8C%EC%9D%BC-%E2%86%92-usr-sbin-%EC%9B%90%EB%B3%B8"><span class="nav-number">1.2.14.</span> <span class="nav-text">&#x2F;sbin(바로가기파일) → &#x2F;usr&#x2F;sbin(원본)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#srv"><span class="nav-number">1.2.15.</span> <span class="nav-text">&#x2F;srv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sys"><span class="nav-number">1.2.16.</span> <span class="nav-text">&#x2F;sys</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tmp"><span class="nav-number">1.2.17.</span> <span class="nav-text">&#x2F;tmp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#usr"><span class="nav-number">1.2.18.</span> <span class="nav-text">&#x2F;usr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#var"><span class="nav-number">1.2.19.</span> <span class="nav-text">&#x2F;var</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#swap"><span class="nav-number">1.2.20.</span> <span class="nav-text">&#x2F;swap</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%ED%94%84%EB%A1%AC%ED%94%84%ED%8A%B8-command-prompt"><span class="nav-number">2.</span> <span class="nav-text">프롬프트 (command prompt)</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">CLARY</p>
+  <div class="site-description" itemprop="description">Python, Data Science, Performance Marketing, Programming</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/Clary0122" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;Clary0122" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+  <div class="cc-license site-overview-item animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://clary0122.github.io/2021/04/05/File-System-of-Linux-and-Hierarchical-Structure/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="CLARY">
+      <meta itemprop="description" content="Python, Data Science, Performance Marketing, Programming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="채룽 블로그">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          File System of Linux and Hierarchical Structure
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2021-04-05 02:20:18" itemprop="dateCreated datePublished" datetime="2021-04-05T02:20:18+09:00">2021-04-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-04-07 02:21:14" itemprop="dateModified" datetime="2021-04-07T02:21:14+09:00">2021-04-07</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-Server/" itemprop="url" rel="index"><span itemprop="name">Linux Server</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="리눅스의-파일-시스템-및-계층적-구조"><a href="#리눅스의-파일-시스템-및-계층적-구조" class="headerlink" title="리눅스의 파일 시스템 및 계층적 구조"></a>리눅스의 파일 시스템 및 계층적 구조</h1><h2 id="파일-시스템-file-system-이란"><a href="#파일-시스템-file-system-이란" class="headerlink" title="파일 시스템(file system)이란?"></a>파일 시스템(file system)이란?</h2><ul>
+<li>컴퓨터에서 파일이나 자료를 쉽게 발견 및 접근할 수 있도록 보관 또는 조직하는 체제</li>
+</ul>
+<h2 id="계층적-구조"><a href="#계층적-구조" class="headerlink" title="계층적 구조"></a>계층적 구조</h2><p><img src="https://user-images.githubusercontent.com/79209568/113513239-a37cb900-95a3-11eb-990e-e8da9b74a57f.png" alt="image"></p>
+<h3 id=""><a href="#" class="headerlink" title="/"></a>/</h3><ul>
+<li><strong>최상위 루트 디렉터리 또는 최상위 디렉터리</strong></li>
+<li>리눅스의 모든 디렉터리의 시작점(꼭대기)</li>
+</ul>
+<h3 id="bin-바로가기파일-→-usr-bin-원본"><a href="#bin-바로가기파일-→-usr-bin-원본" class="headerlink" title="/bin(바로가기파일) → /usr/bin(원본)"></a>/bin(바로가기파일) → /usr/bin(원본)</h3><ul>
+<li><strong>기본 명령어</strong>가 들어있는 디렉터리</li>
+<li>일반 사용자 계정과 관리자가 사용</li>
+</ul>
+<h3 id="boot"><a href="#boot" class="headerlink" title="/boot"></a>/boot</h3><ul>
+<li>리눅스 <strong>부트로더(bootloder)</strong> 가 들어있는 디렉터리</li>
+<li>이 디렉터리에 오류가 발생하면 리눅스를 부팅할 수 없음</li>
+</ul>
+<h3 id="dev"><a href="#dev" class="headerlink" title="/dev"></a>/dev</h3><ul>
+<li><strong>장치파일</strong>이 들어있는 디렉터리</li>
+</ul>
+<h3 id="etc"><a href="#etc" class="headerlink" title="/etc"></a>/etc</h3><ul>
+<li><strong>시스템의 거의 모든 서비스</strong>와 설정파일이 들어있는 디렉터리</li>
+</ul>
+<h3 id="home"><a href="#home" class="headerlink" title="/home"></a>/home</h3><ul>
+<li><strong>사용자 계정의 홈 디렉터리</strong>가 들어있는 디렉터리</li>
+</ul>
+<h3 id="lib-바로가기파일-→-usr-lib-원본"><a href="#lib-바로가기파일-→-usr-lib-원본" class="headerlink" title="/lib(바로가기파일) → /usr/lib(원본)"></a>/lib(바로가기파일) → /usr/lib(원본)</h3><ul>
+<li><strong>커널, 모듈, 라이브러리</strong>파일들이 들어있는 디렉터리</li>
+</ul>
+<h3 id="media"><a href="#media" class="headerlink" title="/media"></a>/media</h3><ul>
+<li><strong>로컬 장치파일</strong>이 사용되는 경로</li>
+<li>ex) cd-rom, usb 등</li>
+</ul>
+<h3 id="mnt"><a href="#mnt" class="headerlink" title="/mnt"></a>/mnt</h3><ul>
+<li><strong>원격 장치파일</strong>이 사용되는 경로</li>
+<li>ex) bluetooth, wifi 등</li>
+</ul>
+<h3 id="opt"><a href="#opt" class="headerlink" title="/opt"></a>/opt</h3><ul>
+<li><strong>추가한 소프트웨어, 설치한 파일</strong>들이 들어있는 디렉터리</li>
+</ul>
+<h3 id="proc"><a href="#proc" class="headerlink" title="/proc"></a>/proc</h3><ul>
+<li>커널과 프로세스를 위한 <strong>가상 파일 시스템</strong>이 들어있는 디렉터리</li>
+</ul>
+<h3 id="root"><a href="#root" class="headerlink" title="/root"></a>/root</h3><ul>
+<li><strong>root(관리자)의 홈</strong> 디렉터리</li>
+</ul>
+<h3 id="run"><a href="#run" class="headerlink" title="/run"></a>/run</h3><ul>
+<li><strong>계속 실행되고 있는 프로세스</strong> 관련 파일들이 들어있는 디렉터리</li>
+</ul>
+<h3 id="sbin-바로가기파일-→-usr-sbin-원본"><a href="#sbin-바로가기파일-→-usr-sbin-원본" class="headerlink" title="/sbin(바로가기파일) → /usr/sbin(원본)"></a>/sbin(바로가기파일) → /usr/sbin(원본)</h3><ul>
+<li><strong>시스템 관련 명령어</strong>가 들어있는 디렉터리</li>
+<li>관리자만 사용</li>
+</ul>
+<h3 id="srv"><a href="#srv" class="headerlink" title="/srv"></a>/srv</h3><ul>
+<li><strong>시스템이 제공하는 서비스</strong>를 위한 파일들이 들어있는 디렉터리</li>
+</ul>
+<h3 id="sys"><a href="#sys" class="headerlink" title="/sys"></a>/sys</h3><ul>
+<li><strong>시스템이 필요로하는 파일들</strong>이 들어있는 디렉터리</li>
+</ul>
+<h3 id="tmp"><a href="#tmp" class="headerlink" title="/tmp"></a>/tmp</h3><ul>
+<li>공용 디렉터리</li>
+<li>임시 저장소 : 서비스 사용시 관련 파일이 잠시 보관되었다가 시스템을 재부팅하면 사라짐</li>
+</ul>
+<h3 id="usr"><a href="#usr" class="headerlink" title="/usr"></a>/usr</h3><ul>
+<li>시스템이 아닌 <strong>사용자 계정 또는 관리자가 사용하는 서비스를 설치</strong>하는 경로</li>
+<li>크기가 크거나 자주 사용하지 않는 것들이 들어있음</li>
+</ul>
+<h3 id="var"><a href="#var" class="headerlink" title="/var"></a>/var</h3><ul>
+<li>시스템 운영 중에 <strong>기록이 저장되는 파일</strong>이 들어있는 디렉터리</li>
+<li>로그 파일, 사용자 계정의 메일 파일 등</li>
+</ul>
+<h3 id="swap"><a href="#swap" class="headerlink" title="/swap"></a>/swap</h3><ul>
+<li><strong>가상 메모리</strong>(마치 파티션을 진자 메모리처럼 인식하게 함)<ul>
+<li>4GB 이하는 RAM의 2배</li>
+<li>4GB 이상은 RAM 그대로</li>
+</ul>
+</li>
+</ul>
+<h1 id="프롬프트-command-prompt"><a href="#프롬프트-command-prompt" class="headerlink" title="프롬프트 (command prompt)"></a>프롬프트 (command prompt)</h1><blockquote>
+<p>컴퓨터가 입력을 기다리고 있음을 가리키기 위해 화면에 나타내는 표시</p>
+</blockquote>
+<ul>
+<li>Windows 형식<ul>
+<li>드라이브:\경로명</li>
+<li>ex)  C:\Linux</li>
+</ul>
+</li>
+<li>Linux 형식<ul>
+<li>[계정명@서버명 현재경로]#|$</li>
+<li>[] : bash라고 함</li>
+<li># : 관리자일 경우</li>
+<li>$ : 일반사용자일 경우</li>
+<li>ex) [root@localhost~]#</li>
+</ul>
+</li>
+<li>Unix 형식 : bash가 없음</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/file-system/" rel="tag"># file system</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/04/04/Installing-Linux/" rel="prev" title="Installing Linux">
+                  <i class="fa fa-chevron-left"></i> Installing Linux
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/05/Commands/" rel="next" title="Commands">
+                  Commands <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CLARY</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
